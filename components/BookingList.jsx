@@ -17,7 +17,7 @@ const getBookings = async () => {
     }
 };
 
-export default async function TopicsList() {
+export default async function BookingList() {
     const { bookings } = await getBookings();
 
     return (
