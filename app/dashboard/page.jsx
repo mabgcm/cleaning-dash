@@ -1,5 +1,14 @@
-import UserInfo from "@/components/UserInfo";
+import React from 'react'
+import BookingList from '../../components/BookingList'
+import UserInfo from '@/components/UserInfo'
 
-export default function Dashboard() {
-  return <UserInfo />;
+const Dashboard = () => {
+  return (
+    <>
+      <UserInfo />
+      <BookingList />
+    </>
+  )
 }
+
+export default Dashboard
