@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function EditBookingForm({
+    id,
     name,
     phone,
     email,
