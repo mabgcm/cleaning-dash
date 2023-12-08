@@ -1,4 +1,5 @@
 import EditBookingForm from '@/components/EditBookingForm'
+
 const getBookingById = async (id) => {
     try {
         const res = await fetch(`https://cleaning-dash.vercel.app/api/booking/${id}`, {
@@ -9,15 +10,27 @@ const getBookingById = async (id) => {
             throw new Error("Failed to fetch edit booking");
         }
 
-        return res.json();
+        const data = await res.json();
+
+        // Check if the 'booking' property is present in the response
+        if ('booking' in data) {
+            return data;
+        } else {
+            throw new Error("Booking data not found in the response");
+        }
     } catch (error) {
-        console.log(error);
+        console.error(error);
+        return null; // Return null in case of an error
     }
 };
 
 export default async function EditBooking({ params }) {
     const { id } = params;
     const { booking } = await getBookingById(id);
+    if (!booking) {
+        // Handle the case where booking is undefined
+        return <p>Booking not found.</p>;
+    }
     const { name, phone, email, adress, city, postalCode, bedrooms, bathrooms, squareFeetRange, cleaningItems, totalAmount } = booking;
     return <EditBookingForm
         id={id}
