@@ -12,10 +12,10 @@ const bookingSchema = new Schema({
     bathrooms: Number,
     squareFeetRange: String,
     cleaningItems: [String],
-    totalAmount: Number
+    totalAmount: Number,
 },
     {
-        timestamps: true
+        timestamps: true,
     });
 
 const Booking = mongoose.models.Booking || mongoose.model('Booking', bookingSchema);
