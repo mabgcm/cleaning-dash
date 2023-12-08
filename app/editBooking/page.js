@@ -1,4 +1,4 @@
-import EditBookingForm from '../../components/EditBookingForm'
+import EditBookingForm from '@/components/EditBookingForm'
 const getBookingById = async (id) => {
     try {
         const res = await fetch(`https://cleaning-dash.vercel.app/api/booking/${id}`, {
@@ -6,7 +6,7 @@ const getBookingById = async (id) => {
         });
 
         if (!res.ok) {
-            throw new Error("Failed to fetch topic");
+            throw new Error("Failed to fetch edit booking");
         }
 
         return res.json();
