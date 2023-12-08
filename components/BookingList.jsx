@@ -3,7 +3,7 @@ import { HiPencilAlt } from "react-icons/hi";
 
 const getBookings = async () => {
     try {
-        const res = await fetch("https://cleaning-dash.vercel.app/api/booking", {
+        const res = await fetch("https://cleaning-dash-git-master-bugucam-gmailcom.vercel.app/api/booking", {
             cache: "no-store",
         });
 

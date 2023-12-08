@@ -1,5 +1,5 @@
-import connectMongoDB from "app/libs/db";
-import Booking from "app/models/booking";
+import connectMongoDB from "@/libs/db";
+import Booking from "@/models/booking";
 import { NextResponse } from 'next/server'
 
 

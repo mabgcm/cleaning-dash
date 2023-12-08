@@ -2,7 +2,7 @@ import EditBookingForm from '@/components/EditBookingForm'
 
 const getBookingById = async (id) => {
     try {
-        const res = await fetch(`https://cleaning-dash.vercel.app/api/booking/${id}`, {
+        const res = await fetch(`https://cleaning-dash-git-master-bugucam-gmailcom.vercel.app/api/booking/${id}`, {
             cache: "no-store",
         });
 

@@ -34,7 +34,7 @@ export default function EditBookingForm({
         e.preventDefault();
 
         try {
-            const res = await fetch(`https://cleaning-dash.vercel.app/api/booking${id}`, {
+            const res = await fetch(`https://cleaning-dash-git-master-bugucam-gmailcom.vercel.app/api/booking${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-type": "application/json",
