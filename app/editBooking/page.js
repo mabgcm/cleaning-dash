@@ -1,4 +1,4 @@
-import BookingList from '../../components/BookingList'
+import EditBookingForm from '../../components/EditBookingForm'
 const getBookingById = async (id) => {
     try {
         const res = await fetch(`https://cleaning-dash.vercel.app/api/booking/${id}`, {
@@ -19,7 +19,7 @@ export default async function EditBooking({ params }) {
     const { id } = params;
     const { booking } = await getBookingById(id);
     const { name, phone, email, adress, city, postalCode, bedrooms, bathrooms, squareFeetRange, cleaningItems, totalAmount } = booking;
-    return <BookingList
+    return <EditBookingForm
         id={id}
         name={name}
         phone={phone}

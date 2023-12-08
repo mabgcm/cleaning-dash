@@ -8,12 +8,12 @@ const getBookings = async () => {
         });
 
         if (!res.ok) {
-            throw new Error("Failed to fetch topics");
+            throw new Error("Failed to fetch bookings");
         }
 
         return res.json();
     } catch (error) {
-        console.log("Error loading topics: ", error);
+        console.log("Error loading bookings: ", error);
     }
 };
 
@@ -33,7 +33,7 @@ export default async function BookingList() {
                     </div>
 
                     <div className="flex gap-2">
-                        <Link href={`/editTopic/${b._id}`}>
+                        <Link href={`/editbooking/${b._id}`}>
                             <HiPencilAlt size={24} />
                         </Link>
                     </div>
