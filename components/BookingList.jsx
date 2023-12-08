@@ -10,15 +10,21 @@ const getBookings = async () => {
         if (!res.ok) {
             throw new Error("Failed to fetch bookings");
         }
+        const data = await res.json();
+        return data; // Returning the entire data object
 
-        return res.json();
     } catch (error) {
-        console.log("Error loading bookings: ", error);
+        console.error("Error loading bookings: ", error);
+        return null; // Return null in case of an error
     }
 };
 
 export default async function BookingList() {
-    const { bookings } = await getBookings();
+    const { bookings } = getBookings() || { bookings: [] };
+    if (!bookings) {
+        // Handle the case where bookings are undefined or null
+        return <p>No bookings available.</p>;
+    }
 
     return (
         <>

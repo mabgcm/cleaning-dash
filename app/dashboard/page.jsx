@@ -1,5 +1,5 @@
 import React from 'react'
-import BookingList from '../../components/BookingList'
+import BookingList from '@components/BookingList'
 import UserInfo from '@/components/UserInfo'
 
 const Dashboard = () => {
