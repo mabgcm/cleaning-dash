@@ -1,5 +1,5 @@
 import connectMongoDB from "../../../lib/db";
-import Booking from "app/models/booking";
+import Booking from "../../../models/booking";
 import { NextResponse } from 'next/server'
 
 export async function PUT(request, { params }) {
