@@ -1,4 +1,4 @@
-import connectMongoDB from "../../../../lib/db";
+import connectMongoDB from "../../../lib/db";
 import Booking from "app/models/booking";
 import { NextResponse } from 'next/server'
 
