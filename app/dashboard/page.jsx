@@ -1,12 +1,13 @@
 import React from 'react'
-import BookingList from '@/components/BookingList'
-import UserInfo from '@/components/UserInfo'
+import BookingList from '../../components/BookingList'
+import UserInfo from '../../components/UserInfo'
 
 const Dashboard = () => {
   return (
     <>
-      <UserInfo />
-      <BookingList />
+      <p>Dasboard</p>
+      {/* <UserInfo /> */}
+      {/* <BookingList /> */}
     </>
   )
 }

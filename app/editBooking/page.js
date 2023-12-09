@@ -1,4 +1,4 @@
-import EditBookingForm from '@/components/EditBookingForm'
+import EditBookingForm from '../../components/EditBookingForm'
 
 const getBookingById = async (id) => {
     try {
@@ -32,18 +32,18 @@ export default async function EditBooking({ params }) {
         return <p>Booking not found.</p>;
     }
     const { name, phone, email, adress, city, postalCode, bedrooms, bathrooms, squareFeetRange, cleaningItems, totalAmount } = booking;
-    return <EditBookingForm
-        id={id}
-        name={name}
-        phone={phone}
-        email={email}
-        adress={adress}
-        city={city}
-        postalCode={postalCode}
-        bedrooms={bedrooms}
-        bathrooms={bathrooms}
-        squareFeetRange={squareFeetRange}
-        cleaningItems={cleaningItems}
-        totalAmount={totalAmount}
-    />;
+    // return <EditBookingForm
+    //     id={id}
+    //     name={name}
+    //     phone={phone}
+    //     email={email}
+    //     adress={adress}
+    //     city={city}
+    //     postalCode={postalCode}
+    //     bedrooms={bedrooms}
+    //     bathrooms={bathrooms}
+    //     squareFeetRange={squareFeetRange}
+    //     cleaningItems={cleaningItems}
+    //     totalAmount={totalAmount}
+    // />;
 }

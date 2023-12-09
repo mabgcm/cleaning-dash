@@ -1,5 +1,5 @@
-import dbConnect from '@/libs/db';
-import Booking from '@/models/booking';
+import dbConnect from '../../libs/db';
+import Booking from '../../models/booking';
 
 // Define the functions
 async function getHandler(req, res) {
