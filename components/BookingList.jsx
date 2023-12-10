@@ -56,39 +56,26 @@ const BookingList = () => {
     }, []);
 
     return (
-        <div className="lg:flex">
-            {/* Medium and Larger Screens */}
-            <div className="lg:w-1/2 pr-4">
-                {bookings.map((b) => (
-                    <div
-                        key={b._id}
-                        className="p-4 border border-slate-300 my-3 flex justify-between gap-5 items-start"
-                        onClick={() => handleClick(b._id)}
-                        style={{ cursor: 'pointer' }}
-                    >
-                        <div>
-                            <h2 className="font-bold text-2xl">{b.name}</h2>
-                            <div>{b.totalAmount}</div>
+        <div className="lg:w-1/2 pr-4">
+            {bookings.map((b) => (
+                <div
+                    key={b._id}
+                    className="p-4 border border-slate-300 my-3 flex justify-between gap-5 items-start"
+                    onClick={() => handleClick(b._id)}
+                    style={{ cursor: 'pointer' }}
+                >
+                    <div>
+                        <h2 className="font-bold text-2xl">{b.name}</h2>
+                        <div>{b.totalAmount}</div>
+                    </div>
+                    {/* Conditionally render BookingDetails under the clicked component */}
+                    {selectedBooking?._id === b._id && (
+                        <div className="flex flex-col items-start">
+                            <BookingDetails booking={selectedBooking} />
                         </div>
-                        {/* Conditionally render BookingDetails under the clicked component */}
-                        {selectedBooking?._id === b._id && (
-                            <div>
-                                <BookingDetails booking={selectedBooking} />
-                            </div>
-                        )}
-                    </div>
-                ))}
-            </div>
-
-            {/* Booking Details */}
-            {selectedBooking && (
-                <div className="lg:w-1/2 pl-4">
-                    {/* Display details on larger screens */}
-                    <div className="hidden lg:block">
-                        <BookingDetails booking={selectedBooking} />
-                    </div>
+                    )}
                 </div>
-            )}
+            ))}
         </div>
     );
 };
