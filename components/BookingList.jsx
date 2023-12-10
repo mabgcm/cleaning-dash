@@ -70,7 +70,7 @@ const BookingList = () => {
                     </div>
                     {/* Conditionally render BookingDetails under the clicked component */}
                     {selectedBooking?._id === b._id && (
-                        <div className="flex flex-col items-start">
+                        <div className="w-full p-4 border border-slate-300 mt-3">
                             <BookingDetails booking={selectedBooking} />
                         </div>
                     )}
@@ -79,5 +79,6 @@ const BookingList = () => {
         </div>
     );
 };
+
 
 export default BookingList;
