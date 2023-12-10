@@ -22,17 +22,37 @@ const getBookings = async () => {
     }
 };
 
-export default function BookingList() {
+const BookingList = () => {
+    const [selectedBooking, setSelectedBooking] = useState(null);
     const [bookings, setBookings] = useState([]);
 
+    const handleClick = async (id) => {
+        try {
+            // Fetch details of the selected booking
+            const res = await fetch(`https://cleaning-dash.vercel.app/api/booking/${id}`, {
+                cache: "no-store",
+            });
+
+            if (!res.ok) {
+                throw new Error("Failed to fetch booking details");
+            }
+
+            const selectedBookingDetails = await res.json();
+            setSelectedBooking(selectedBookingDetails.booking);
+        } catch (error) {
+            console.log("Error loading booking details: ", error);
+        }
+    };
+
+    // Fetch bookings when the component mounts
     useEffect(() => {
-        const fetchData = async () => {
-            const bookingsData = await getBookings();
-            setBookings(bookingsData);
+        const fetchBookings = async () => {
+            const fetchedBookings = await getBookings();
+            setBookings(fetchedBookings);
         };
 
-        fetchData();
-    }, []); // The empty dependency array ensures that this effect runs only once when the component mounts
+        fetchBookings();
+    }, []);
 
     return (
         <>
@@ -40,15 +60,20 @@ export default function BookingList() {
                 <div
                     key={b._id}
                     className="p-4 border border-slate-300 my-3 flex justify-between gap-5 items-start"
+                    onClick={() => handleClick(b._id)}
+                    style={{ cursor: 'pointer' }}
                 >
                     <div>
                         <h2 className="font-bold text-2xl">{b.name}</h2>
                         <div>{b.totalAmount}</div>
                     </div>
-
-                    <div className="flex gap-2">{/* Add your content here */}</div>
                 </div>
             ))}
+
+            {/* Pass the selectedBooking to the BookingDetails component */}
+            <BookingDetails booking={selectedBooking} />
         </>
     );
-}
+};
+
+export default BookingList;
