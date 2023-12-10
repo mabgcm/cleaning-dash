@@ -70,6 +70,12 @@ const BookingList = () => {
                             <h2 className="font-bold text-2xl">{b.name}</h2>
                             <div>{b.totalAmount}</div>
                         </div>
+                        {/* Conditionally render BookingDetails under the clicked component */}
+                        {selectedBooking?._id === b._id && (
+                            <div>
+                                <BookingDetails booking={selectedBooking} />
+                            </div>
+                        )}
                     </div>
                 ))}
             </div>
@@ -77,8 +83,8 @@ const BookingList = () => {
             {/* Booking Details */}
             {selectedBooking && (
                 <div className="lg:w-1/2 pl-4">
-                    {/* Display details in a dropdown on smaller screens */}
-                    <div className="lg:hidden">
+                    {/* Display details on larger screens */}
+                    <div className="hidden lg:block">
                         <BookingDetails booking={selectedBooking} />
                     </div>
                 </div>
