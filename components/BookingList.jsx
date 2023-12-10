@@ -16,7 +16,7 @@ const getBookings = async () => {
     }
 };
 
-export default async function TopicsList() {
+export default async function BookingList() {
     const { booking } = await getBookings();
 
     return (
@@ -27,7 +27,7 @@ export default async function TopicsList() {
                     className="p-4 border border-slate-300 my-3 flex justify-between gap-5 items-start"
                 >
                     <div>
-                        <h2 className="font-bold text-2xl">{t.name}</h2>
+                        <h2 className="font-bold text-2xl">{b.name}</h2>
                         <div>{b.totalAmount}</div>
                     </div>
 
