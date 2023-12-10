@@ -87,7 +87,21 @@ const BookingList = () => {
             >
                 {selectedBooking && (
                     <div className="p-4 border border-slate-300">
-                        <BookingDetails booking={selectedBooking} />
+                        {/* Display individual fields */}
+                        <div>
+                            <strong>Name:</strong> {selectedBooking.name}
+                        </div>
+                        <div>
+                            <strong>Phone:</strong> {selectedBooking.phone}
+                        </div>
+                        <div>
+                            <strong>Email:</strong> {selectedBooking.email}
+                        </div>
+                        <div>
+                            <strong>Address:</strong> {selectedBooking.address}
+                        </div>
+                        {/* Display other fields as needed */}
+
                         <button onClick={closeModal}>Close Modal</button>
                     </div>
                 )}
