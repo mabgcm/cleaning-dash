@@ -1,5 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react';
+import { Fragment } from 'react';
+import { Transition } from '@headlessui/react';
 import BookingDetails from './BookingDetails';
 
 const getBookings = async () => {
@@ -22,6 +24,10 @@ const getBookings = async () => {
         return []; // Return an empty array in case of an error
     }
 };
+
+function classNames(...classes) {
+    return classes.filter(Boolean).join(' ');
+}
 
 const BookingList = () => {
     const [selectedBooking, setSelectedBooking] = useState(null);
@@ -56,9 +62,9 @@ const BookingList = () => {
     }, []);
 
     return (
-        <div className="flex">
+        <div className="lg:flex">
             {/* Medium and Larger Screens */}
-            <div className="lg:w-1/2 xl:w-1/3 pr-4">
+            <div className="lg:w-1/2 pr-4">
                 {bookings.map((b) => (
                     <div
                         key={b._id}
@@ -74,14 +80,21 @@ const BookingList = () => {
                 ))}
             </div>
 
-            {/* Booking Details */}
+            {/* Booking Details Dropdown (Mobile) */}
             {selectedBooking && (
-                <div className="lg:w-1/2 pl-4">
-                    {/* Display details in a dropdown on smaller screens */}
-                    <div className="lg:hidden">
+                <Transition
+                    as={Fragment}
+                    enter="transition ease-out duration-100 transform"
+                    enterFrom="opacity-0 scale-95"
+                    enterTo="opacity-100 scale-100"
+                    leave="transition ease-in duration-75 transform"
+                    leaveFrom="opacity-100 scale-100"
+                    leaveTo="opacity-0 scale-95"
+                >
+                    <div className="lg:hidden w-full">
                         <BookingDetails booking={selectedBooking} />
                     </div>
-                </div>
+                </Transition>
             )}
         </div>
     );
