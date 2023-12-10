@@ -84,6 +84,7 @@ const BookingList = () => {
             {selectedBooking && (
                 <Transition
                     as={Fragment}
+                    show={bookings !== null}
                     enter="transition ease-out duration-100 transform"
                     enterFrom="opacity-0 scale-95"
                     enterTo="opacity-100 scale-100"
