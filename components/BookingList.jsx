@@ -75,10 +75,14 @@ const BookingList = () => {
             </div>
 
             {/* Booking Details */}
-            <div className="lg:w-1/2 xl:w-2/3 pl-4">
-                {/* Pass the selectedBooking to the BookingDetails component */}
-                <BookingDetails booking={selectedBooking} />
-            </div>
+            {selectedBooking && (
+                <div className="lg:w-1/2 pl-4">
+                    {/* Display details in a dropdown on smaller screens */}
+                    <div className="lg:hidden">
+                        <BookingDetails booking={selectedBooking} />
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
