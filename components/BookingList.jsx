@@ -30,7 +30,7 @@ const BookingList = () => {
     const handleClick = async (id) => {
         try {
             // Fetch details of the selected booking
-            const res = await fetch(`https://cleaning-dash.vercel.app/api/booking/${id}`, {
+            const res = await fetch(`https://cleaning-dash.vercel.app/api/bookings/${id}`, {
                 cache: "no-store",
             });
 
