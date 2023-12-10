@@ -10,18 +10,23 @@ const getBookings = async () => {
             throw new Error("Failed to fetch bookings");
         }
 
-        return res.json();
+        const data = await res.json();
+        // Ensure that the 'booking' property is present in the data, otherwise default to an empty array
+        const bookings = data && data.booking ? data.booking : [];
+
+        return bookings;
     } catch (error) {
         console.log("Error loading bookings: ", error);
+        return []; // Return an empty array in case of an error
     }
 };
 
 export default async function BookingList() {
-    const { booking } = await getBookings();
+    const bookings = await getBookings();
 
     return (
         <>
-            {booking.map((b) => (
+            {bookings.map((b) => (
                 <div
                     key={b._id}
                     className="p-4 border border-slate-300 my-3 flex justify-between gap-5 items-start"
@@ -31,10 +36,7 @@ export default async function BookingList() {
                         <div>{b.totalAmount}</div>
                     </div>
 
-                    <div className="flex gap-2">
-
-
-                    </div>
+                    <div className="flex gap-2">{/* Add your content here */}</div>
                 </div>
             ))}
         </>
