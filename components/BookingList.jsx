@@ -1,6 +1,8 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import BookingDetails from './BookingDetails';
+import Modal from 'react-modal';
+
 
 const getBookings = async () => {
     try {
@@ -26,6 +28,7 @@ const getBookings = async () => {
 const BookingList = () => {
     const [selectedBooking, setSelectedBooking] = useState(null);
     const [bookings, setBookings] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleClick = async (id) => {
         try {
@@ -40,9 +43,15 @@ const BookingList = () => {
 
             const selectedBookingDetails = await res.json();
             setSelectedBooking(selectedBookingDetails.booking);
+            setIsModalOpen(true);  // Open the modal
+
         } catch (error) {
             console.log("Error loading booking details: ", error);
         }
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);  // Close the modal
     };
 
     // Fetch bookings when the component mounts
@@ -68,17 +77,23 @@ const BookingList = () => {
                         <h2 className="font-bold text-2xl">{b.name}</h2>
                         <div>{b.totalAmount}</div>
                     </div>
-                    {/* Conditionally render BookingDetails under the clicked component */}
-                    {selectedBooking?._id === b._id && (
-                        <div className="w-full p-4 border border-slate-300 mt-3">
-                            <BookingDetails booking={selectedBooking} />
-                        </div>
-                    )}
                 </div>
             ))}
+
+            <Modal
+                isOpen={isModalOpen}
+                onRequestClose={closeModal}
+                contentLabel="Booking Details"
+            >
+                {selectedBooking && (
+                    <div className="p-4 border border-slate-300">
+                        <BookingDetails booking={selectedBooking} />
+                        <button onClick={closeModal}>Close Modal</button>
+                    </div>
+                )}
+            </Modal>
         </div>
     );
 };
-
 
 export default BookingList;
