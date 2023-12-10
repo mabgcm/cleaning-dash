@@ -1,5 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react';
+import BookingDetails from './BookingDetails';
 
 const getBookings = async () => {
     try {
