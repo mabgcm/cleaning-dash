@@ -74,6 +74,7 @@ const BookingList = () => {
                 ))}
             </div>
 
+            {/* Booking Details */}
             {selectedBooking && (
                 <div className="lg:w-1/2 pl-4">
                     {/* Display details in a dropdown on smaller screens */}
