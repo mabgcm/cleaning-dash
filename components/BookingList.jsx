@@ -124,7 +124,7 @@ const BookingList = () => {
                             <strong>Total Amount:</strong> {selectedBooking.totalAmount}
                         </div>
 
-                        <button onClick={closeModal}>Close Modal</button>
+                        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={closeModal}>Close Modal</button>
                     </div>
                 )}
             </Modal>
