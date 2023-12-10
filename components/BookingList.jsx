@@ -56,9 +56,9 @@ const BookingList = () => {
     }, []);
 
     return (
-        <div className="flex">
+        <div className="lg:flex">
             {/* Medium and Larger Screens */}
-            <div className="lg:w-1/2 xl:w-1/3 pr-4">
+            <div className="lg:w-1/2 pr-4">
                 {bookings.map((b) => (
                     <div
                         key={b._id}
@@ -79,15 +79,7 @@ const BookingList = () => {
                 <div className="lg:w-1/2 pl-4">
                     {/* Display details in a dropdown on smaller screens */}
                     <div className="lg:hidden">
-                        <div className="hidden w-full overflow-hidden transition-[height] duration-300">
-                            <BookingDetails booking={selectedBooking} />
-                        </div>
-                    </div>
-                    {/* Display details directly on larger screens */}
-                    <div className="hidden lg:block">
-                        <p className="pt-5 text-gray-800 dark:text-gray-200">
-                            {selectedBooking.details} {/* Replace with actual details */}
-                        </p>
+                        <BookingDetails booking={selectedBooking} />
                     </div>
                 </div>
             )}
