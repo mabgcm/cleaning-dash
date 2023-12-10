@@ -1,4 +1,5 @@
-import React from 'react'
+'use client'
+import React, { useEffect, useState } from 'react';
 
 const getBookings = async () => {
     try {
@@ -11,9 +12,8 @@ const getBookings = async () => {
         }
 
         const data = await res.json();
-        console.log("Received data:", data);
-        // Ensure that the 'booking' property is present in the data, otherwise default to an empty array
-        const bookings = data && data.booking ? data.booking : [];
+        // Ensure that the 'bookings' property is present in the data, otherwise default to an empty array
+        const bookings = data && data.bookings ? data.bookings : [];
 
         return bookings;
     } catch (error) {
@@ -22,10 +22,17 @@ const getBookings = async () => {
     }
 };
 
-export default async function BookingList() {
-    const bookings = await getBookings();
+export default function BookingList() {
+    const [bookings, setBookings] = useState([]);
 
-    console.log("Received  at BookingList component:", bookings);
+    useEffect(() => {
+        const fetchData = async () => {
+            const bookingsData = await getBookings();
+            setBookings(bookingsData);
+        };
+
+        fetchData();
+    }, []); // The empty dependency array ensures that this effect runs only once when the component mounts
 
     return (
         <>
