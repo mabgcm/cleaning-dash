@@ -11,6 +11,7 @@ const getBookings = async () => {
         }
 
         const data = await res.json();
+        console.log("Received data:", data);
         // Ensure that the 'booking' property is present in the data, otherwise default to an empty array
         const bookings = data && data.booking ? data.booking : [];
 
@@ -23,6 +24,8 @@ const getBookings = async () => {
 
 export default async function BookingList() {
     const bookings = await getBookings();
+
+    console.log("Received  at BookingList component:", bookings);
 
     return (
         <>
