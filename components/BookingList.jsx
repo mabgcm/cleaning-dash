@@ -87,7 +87,9 @@ const BookingList = () => {
             >
                 {selectedBooking && (
                     <div className="p-4 border border-slate-300">
-                        {/* Display individual fields */}
+                        <div>
+                            <h4>Customer Details:</h4>
+                        </div>
                         <div>
                             <strong>Name:</strong> {selectedBooking.name}
                         </div>
@@ -100,7 +102,27 @@ const BookingList = () => {
                         <div>
                             <strong>Address:</strong> {selectedBooking.address}
                         </div>
-                        {/* Display other fields as needed */}
+                        <div>
+                            <strong>Postal Code:</strong> {selectedBooking.postalCode}
+                        </div>
+                        <div>
+                            Property details
+                        </div>
+                        <div>
+                            <strong>Bedrooms:</strong> {selectedBooking.bedrooms}
+                        </div>
+                        <div>
+                            <strong>Bathrooms:</strong> {selectedBooking.bathrooms}
+                        </div>
+                        <div>
+                            <strong>Size:</strong> {selectedBooking.squareFeetRange} sqft
+                        </div>
+                        <div>
+                            <strong>Extra Items to be cleaned:</strong> {selectedBooking.cleaningItems.join(', ')}
+                        </div>
+                        <div>
+                            <strong>Total Amount:</strong> {selectedBooking.totalAmount}
+                        </div>
 
                         <button onClick={closeModal}>Close Modal</button>
                     </div>
