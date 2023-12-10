@@ -56,24 +56,30 @@ const BookingList = () => {
     }, []);
 
     return (
-        <>
-            {bookings.map((b) => (
-                <div
-                    key={b._id}
-                    className="p-4 border border-slate-300 my-3 flex justify-between gap-5 items-start"
-                    onClick={() => handleClick(b._id)}
-                    style={{ cursor: 'pointer' }}
-                >
-                    <div>
-                        <h2 className="font-bold text-2xl">{b.name}</h2>
-                        <div>{b.totalAmount}</div>
+        <div className="flex">
+            {/* Medium and Larger Screens */}
+            <div className="lg:w-1/2 xl:w-1/3 pr-4">
+                {bookings.map((b) => (
+                    <div
+                        key={b._id}
+                        className="p-4 border border-slate-300 my-3 flex justify-between gap-5 items-start"
+                        onClick={() => handleClick(b._id)}
+                        style={{ cursor: 'pointer' }}
+                    >
+                        <div>
+                            <h2 className="font-bold text-2xl">{b.name}</h2>
+                            <div>{b.totalAmount}</div>
+                        </div>
                     </div>
-                </div>
-            ))}
+                ))}
+            </div>
 
-            {/* Pass the selectedBooking to the BookingDetails component */}
-            <BookingDetails booking={selectedBooking} />
-        </>
+            {/* Booking Details */}
+            <div className="lg:w-1/2 xl:w-2/3 pl-4">
+                {/* Pass the selectedBooking to the BookingDetails component */}
+                <BookingDetails booking={selectedBooking} />
+            </div>
+        </div>
     );
 };
 
