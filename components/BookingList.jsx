@@ -128,10 +128,10 @@ const BookingList = () => {
                             <strong>Total Amount:</strong> {selectedBooking.totalAmount}
                         </div>
                         <div>
-                            <strong>Payment Status:</strong> {selectedBooking.paid}
+                            <strong>Payment Status:</strong> {selectedBooking.paid.toString()}
                         </div>
                         <div>
-                            <strong>Cleaning Status:</strong> {selectedBooking.completed}
+                            <strong>Cleaning Status:</strong> {selectedBooking.completed.toString()}
                         </div>
 
                         <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={closeModal}>Close Details</button>
