@@ -107,6 +107,9 @@ const BookingList = () => {
                             <strong>Postal Code:</strong> {selectedBooking.postalCode}
                         </div>
                         <div>
+                            <strong>Booking Date:</strong> {selectedBooking.date}
+                        </div>
+                        <div>
                             Property details
                         </div>
                         <div>
