@@ -9,6 +9,7 @@ const BookingDetails = ({ booking }) => {
         <div>
             <h2>{booking.name}</h2>
             <p>Total Amount: {booking.totalAmount}</p>
+            <p>Cleaning Date: {booking.date}</p>
             {/* Add other details you want to display */}
         </div>
     );

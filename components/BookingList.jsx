@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react';
-import BookingDetails from './BookingDetails';
+// import BookingDetails from './BookingDetails';
 import Modal from 'react-modal';
 
 
