@@ -127,20 +127,12 @@ const BookingList = () => {
                         <div>
                             <strong>Total Amount:</strong> {selectedBooking.totalAmount}
                         </div>
-                        {b.paid && b.completed ? (
-                            <div className="flex items-center">
-                                <div className="bg-green-500 w-4 h-4 rounded-full mr-2"></div>
-                                <div className="bg-green-500">Paid and Completed</div>
-                            </div>
-                        ) : (
-                            <div className="flex items-center">
-                                <div className="bg-red-500 w-4 h-4 rounded-full mr-2"></div>
-                                <div className="bg-red-500">
-                                    {b.paid ? 'Paid, ' : ''}
-                                    {b.completed ? 'Completed' : ''}
-                                </div>
-                            </div>
-                        )}
+                        <div>
+                            <strong>Payment Status:</strong> {selectedBooking.paid}
+                        </div>
+                        <div>
+                            <strong>Cleaning Status:</strong> {selectedBooking.completed}
+                        </div>
 
                         <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={closeModal}>Close Details</button>
                     </div>
