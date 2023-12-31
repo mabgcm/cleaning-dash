@@ -128,10 +128,7 @@ const BookingList = () => {
                             <strong>Total Amount:</strong> {selectedBooking.totalAmount}
                         </div>
                         <div>
-                            <div
-                                className={`w-4 h-4 rounded-full mr-2 ${b.paid ? 'bg-green-500' : 'bg-red-500'}`}
-                            ></div>
-                            <strong>Payment Status:</strong> {selectedBooking.paid.toString()}
+                            <strong>Payment Status:</strong> {selectedBooking.paid ? 'Paid' : 'Unpaid'}
                         </div>
                         <div>
                             <strong>Cleaning Status:</strong> {selectedBooking.completed.toString()}
