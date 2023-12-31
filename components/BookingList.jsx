@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from 'react';
 // import BookingDetails from './BookingDetails';
 import Modal from 'react-modal';
+import { FaCircle } from "react-icons/fa";
+
 
 
 const getBookings = async () => {
@@ -131,7 +133,7 @@ const BookingList = () => {
                             <strong>Payment Status:</strong> {selectedBooking.paid ? 'Paid' : 'Unpaid'}
                         </div>
                         <div>
-                            <strong>Cleaning Status:</strong> {selectedBooking.completed.toString()}
+                            <strong>Cleaning Status:</strong> {selectedBooking.completed ? <FaCircle color='green' /> : <FaCircle color='red' />}
                         </div>
 
                         <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={closeModal}>Close Details</button>
