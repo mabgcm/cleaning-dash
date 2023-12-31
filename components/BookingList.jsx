@@ -130,7 +130,7 @@ const BookingList = () => {
                             <strong>Total Amount:</strong> {selectedBooking.totalAmount}
                         </div>
                         <div>
-                            <strong>Payment Status:</strong> {selectedBooking.paid ? 'Paid' : 'Unpaid'}
+                            <strong>Payment Status:</strong> {selectedBooking.paid ? <FaCircle color='green' /> : <FaCircle color='red' />}
                         </div>
                         <div>
                             <strong>Cleaning Status:</strong> {selectedBooking.completed ? <FaCircle color='green' /> : <FaCircle color='red' />}
