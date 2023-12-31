@@ -2,6 +2,8 @@
 
 import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
+import Button from '@mui/material/Button';
+
 
 export default function UserInfo() {
   const { data: session } = useSession();
@@ -15,13 +17,13 @@ export default function UserInfo() {
         <div>
           Email: <span className="font-bold">{session?.user?.email}</span>
         </div>
-        <button
-          onClick={() => signOut()}
-          className="bg-red-500 text-white font-bold px-6 py-2 mt-3"
-        >
+        <Button
+          variant="outlined"
+          color='error'
+          onClick={() => signOut()}>
           Log Out
-        </button>
+        </Button>
       </div>
-    </div>
+    </div >
   );
 }
