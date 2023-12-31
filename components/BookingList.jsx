@@ -76,6 +76,7 @@ const BookingList = () => {
                     <div>
                         <h2 className="font-bold text-2xl">{b.name}</h2>
                         <div>{b.totalAmount}</div>
+                        <div>{b.date}</div>
                     </div>
                 </div>
             ))}
