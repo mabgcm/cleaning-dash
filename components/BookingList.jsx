@@ -3,6 +3,13 @@ import React, { useEffect, useState } from 'react';
 // import BookingDetails from './BookingDetails';
 import Modal from 'react-modal';
 import { FaCircle } from "react-icons/fa";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 
 
@@ -67,7 +74,37 @@ const BookingList = () => {
     }, []);
 
     return (
-        <div className="lg:w-1/2 pr-4">
+        <div className="pr-4">
+
+            <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <TableHead >
+                        <TableRow>
+                            <TableCell>Client</TableCell>
+                            <TableCell align="right">Package</TableCell>
+                            <TableCell align="right">Location</TableCell>
+                            <TableCell align="right">Date</TableCell>
+                            <TableCell align="right">Amount</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {bookings.map((b) => (
+                            <TableRow
+                                key={b._id}
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                                <TableCell component="th" scope="row">
+                                    {b.name}
+                                </TableCell>
+                                <TableCell align="right">{b.cleaningType}</TableCell>
+                                <TableCell align="right">{b.city}</TableCell>
+                                <TableCell align="right">{b.date}</TableCell>
+                                <TableCell align="right">{b.totalAmount}</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
             {bookings.map((b) => (
                 <div
                     key={b._id}
