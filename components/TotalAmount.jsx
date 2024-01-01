@@ -1,5 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react';
+import { parse } from 'date-fns';
+
 
 const TotalAmount = ({ bookings }) => {
     const [monthlyTotals, setMonthlyTotals] = useState({});
@@ -9,13 +11,14 @@ const TotalAmount = ({ bookings }) => {
         const totals = {};
 
         bookings.forEach((booking) => {
-            const { month, totalAmount } = booking;
+            const date = parse(booking.date, "EEEE, MMMM dd, yyyy 'at' hh:mm a", new Date());
+            const month = date.getMonth() + 1; // 1-indexed month
 
             if (!totals[month]) {
                 totals[month] = 0;
             }
 
-            totals[month] += totalAmount;
+            totals[month] += booking.totalAmount;
         });
 
         return totals;
