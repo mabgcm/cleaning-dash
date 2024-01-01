@@ -40,7 +40,7 @@ const TotalAmount = ({ bookings }) => {
             <div>
                 {Object.keys(monthlyTotals).map((month) => (
                     <div key={month}>
-                        <strong>{`Month ${month}: `}</strong>
+                        <strong>{`${month}: `}</strong>
                         {monthlyTotals[month]}
                     </div>
                 ))}

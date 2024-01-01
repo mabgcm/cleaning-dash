@@ -99,7 +99,7 @@ const BookingList = () => {
                             <TableCell>Location</TableCell>
                             <TableCell>Date</TableCell>
                             <TableCell>Amount</TableCell>
-                            <TableCell>Status</TableCell>
+                            <TableCell>Payment</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -113,13 +113,20 @@ const BookingList = () => {
                             >
                                 <TableCell component="th" scope="row">
                                     <Typography color={b.completed ? 'success.main' : 'warning.main'}>{b.name}</Typography>
-                                    {b.name}
                                 </TableCell>
-                                <TableCell>{b.cleaningType}</TableCell>
-                                <TableCell>{b.city}</TableCell>
-                                <TableCell>{b.date}</TableCell>
-                                <TableCell>{b.totalAmount}</TableCell>
-                                <TableCell>{b.completed ? 'Yes' : 'No'}</TableCell>
+                                <TableCell>
+                                    <Typography color={b.completed ? 'success.main' : 'warning.main'}>{b.cleaningType}</Typography>
+                                </TableCell>
+                                <TableCell>
+                                    <Typography color={b.completed ? 'success.main' : 'warning.main'}>{b.city}</Typography>
+                                </TableCell>
+                                <TableCell>
+                                    <Typography color={b.completed ? 'success.main' : 'warning.main'}>{b.date}</Typography>
+                                </TableCell>
+                                <TableCell>
+                                    <Typography color={b.completed ? 'success.main' : 'warning.main'}>{b.totalAmount}</Typography>
+                                </TableCell>
+                                <TableCell>{b.paid ? 'Yes' : 'No'}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
