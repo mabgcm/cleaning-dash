@@ -93,6 +93,10 @@ const BookingList = () => {
         fetchBookings();
     }, []);
 
+    function capitalize(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
     return (
         <div className="pr-4">
             <div className="total-amount w-1/4">
