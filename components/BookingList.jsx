@@ -121,7 +121,7 @@ const BookingList = () => {
                     <Card sx={{ width: 350, height: 500 }}>
                         <TableRow>
                             <Typography variant="h6" gutterBottom component="div">Contact Details</Typography>
-                            <Table sx={{ minWidth: 300 }}>
+                            <Table sx={{ width: 300 }}>
                                 <TableHead>
                                     <TableRow>
                                         <TableCell>Phone</TableCell>
