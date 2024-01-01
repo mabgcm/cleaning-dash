@@ -121,7 +121,7 @@ const BookingList = () => {
                     <Card>
                         <TableRow>
                             <Typography variant="h6" gutterBottom component="div">Contact Details</Typography>
-                            <Table sx={{ width: 300 }}>
+                            <Table>
                                 <TableHead>
                                     <TableRow>
                                         <TableCell>Phone</TableCell>
