@@ -135,7 +135,7 @@ const BookingList = () => {
                                 <TableCell>
                                     <Typography color={b.completed ? 'success.main' : 'warning.main'}>{b.totalAmount}</Typography>
                                 </TableCell>
-                                <TableCell>{b.paid ? <FaCircle color='green' /> : <FaCircle color='red' />}</TableCell>
+                                <TableCell align="center">{b.paid ? <FaCircle color='green' /> : <FaCircle color='red' />}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
