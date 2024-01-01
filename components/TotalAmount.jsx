@@ -12,7 +12,7 @@ const TotalAmount = ({ bookings }) => {
 
         bookings.forEach((booking) => {
             const date = parse(booking.date, "EEEE, MMMM dd, yyyy 'at' hh:mm a", new Date());
-            const month = date.getMonth() + 1; // 1-indexed month
+            const month = format(date, 'MMMyy'); // Format month names like "Jan24" or "Dec23"
 
             if (!totals[month]) {
                 totals[month] = 0;
