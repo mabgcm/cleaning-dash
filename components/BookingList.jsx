@@ -11,6 +11,8 @@ import Paper from '@mui/material/Paper';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import TotalAmount from './TotalAmount';
+import { FaCircle } from "react-icons/fa";
+
 
 const modalStyle = {
     content: {
@@ -35,8 +37,14 @@ const getBookings = async () => {
         // Ensure that the 'bookings' property is present in the data, otherwise default to an empty array
         const bookings = data && data.bookings ? data.bookings : [];
 
-        // Sort bookings from new to old
-        const sortedBookings = bookings.sort((a, b) => new Date(b.date) - new Date(a.date));
+        // Sort bookings: not completed first, then by date
+        const sortedBookings = bookings.sort((a, b) => {
+            if (a.completed !== b.completed) {
+                return a.completed ? 1 : -1; // Not completed bookings come first
+            } else {
+                return new Date(b.date) - new Date(a.date);
+            }
+        });
 
         return sortedBookings;
     } catch (error) {
@@ -44,6 +52,7 @@ const getBookings = async () => {
         return []; // Return an empty array in case of an error
     }
 };
+
 
 const BookingList = () => {
     const [selectedBooking, setSelectedBooking] = useState(null);
