@@ -148,7 +148,7 @@ const BookingList = () => {
                         </TableRow>
 
                         <TableRow>
-                            <Typography variant="h6" gutterBottom component="div" sx={{ color: 'warning.main' p: 1 }}>Job Details</Typography>
+                            <Typography variant="h6" gutterBottom component="div" sx={{ color: 'warning.main', p: 1 }}>Job Details</Typography>
                             <Table>
                                 <TableHead>
                                     <TableRow>
