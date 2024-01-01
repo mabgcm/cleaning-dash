@@ -124,7 +124,7 @@ const BookingList = () => {
                                     <Typography color={b.completed ? 'success.main' : 'warning.main'}>{b.name}</Typography>
                                 </TableCell>
                                 <TableCell>
-                                    <Typography color={b.completed ? 'success.main' : 'warning.main'}>{b.cleaningType}</Typography>
+                                    <Typography color={b.completed ? 'success.main' : 'warning.main'}>{capitalize(b.cleaningType)}</Typography>
                                 </TableCell>
                                 <TableCell>
                                     <Typography color={b.completed ? 'success.main' : 'warning.main'}>{b.city}</Typography>
@@ -133,7 +133,7 @@ const BookingList = () => {
                                     <Typography color={b.completed ? 'success.main' : 'warning.main'}>{b.date}</Typography>
                                 </TableCell>
                                 <TableCell>
-                                    <Typography color={b.completed ? 'success.main' : 'warning.main'}>{b.totalAmount}</Typography>
+                                    <Typography color={b.completed ? 'success.main' : 'warning.main'}>C$ {b.totalAmount}</Typography>
                                 </TableCell>
                                 <TableCell align="center">{b.paid ? <FaCircle color='green' /> : <FaCircle color='red' />}</TableCell>
                             </TableRow>
@@ -188,8 +188,13 @@ const BookingList = () => {
                                         <TableCell>{selectedBooking.bedrooms}</TableCell>
                                         <TableCell>{selectedBooking.bathrooms}</TableCell>
                                         <TableCell>{selectedBooking.squareFeetRange}</TableCell>
-                                        <TableCell>{selectedBooking.cleaningItems.join(', ')}</TableCell>
-                                    </TableRow>
+                                        <TableCell>
+                                            <ul>
+                                                {selectedBooking.cleaningItems.map((item, index) => (
+                                                    <li key={index}>{capitalize(item)}</li>
+                                                ))}
+                                            </ul>
+                                        </TableCell>                                    </TableRow>
                                 </TableBody>
                             </Table>
                         </TableRow>
