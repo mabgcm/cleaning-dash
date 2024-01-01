@@ -91,6 +91,8 @@ const BookingList = () => {
                         {bookings.map((b) => (
                             <TableRow
                                 key={b._id}
+                                onClick={() => handleClick(b._id)}
+                                style={{ cursor: 'pointer' }}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                                 <TableCell component="th" scope="row">
@@ -105,7 +107,8 @@ const BookingList = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
-            {bookings.map((b) => (
+
+            {/* {bookings.map((b) => (
                 <div
                     key={b._id}
                     className="p-4 border border-slate-300 my-3 flex justify-between gap-5 items-start"
@@ -118,7 +121,7 @@ const BookingList = () => {
                         <div>{b.date}</div>
                     </div>
                 </div>
-            ))}
+            ))} */}
 
             <Modal
                 isOpen={isModalOpen}
