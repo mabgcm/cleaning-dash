@@ -99,6 +99,7 @@ const BookingList = () => {
                             <TableCell>Location</TableCell>
                             <TableCell>Date</TableCell>
                             <TableCell>Amount</TableCell>
+                            <TableCell>Status</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -111,6 +112,7 @@ const BookingList = () => {
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 }, color: b.completed ? 'success.main' : 'warning.main' }}
                             >
                                 <TableCell component="th" scope="row">
+                                    <Typography color={b.completed ? 'success.main' : 'warning.main'}>{b.name}</Typography>
                                     {b.name}
                                 </TableCell>
                                 <TableCell>{b.cleaningType}</TableCell>
