@@ -11,15 +11,16 @@ const TotalAmount = ({ bookings }) => {
         const totals = {};
 
         bookings.forEach((booking) => {
-            const date = parse(booking.date, "EEEE, MMMM dd, yyyy 'at' hh:mm a", new Date());
-            // const month = date.getMonth() + 1;
-            const month = format(date, 'MMMyy');
+            if (booking.paid) {
+                const date = parse(booking.date, "EEEE, MMMM dd, yyyy 'at' hh:mm a", new Date());
+                const month = format(date, 'MMMyy');
 
-            if (!totals[month]) {
-                totals[month] = 0;
+                if (!totals[month]) {
+                    totals[month] = 0;
+                }
+
+                totals[month] += booking.totalAmount;
             }
-
-            totals[month] += booking.totalAmount;
         });
 
         return totals;
