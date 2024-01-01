@@ -13,9 +13,11 @@ import Paper from '@mui/material/Paper';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 
-
-
-
+const modalStyle = {
+    content: {
+        width: '500px'
+    },
+};
 
 const getBookings = async () => {
     try {
@@ -116,7 +118,7 @@ const BookingList = () => {
                 isOpen={isModalOpen}
                 onRequestClose={closeModal}
                 contentLabel="Booking Details"
-                style={{ width: '500px', margin: 'auto' }}
+                style={modalStyle}
             >
                 {selectedBooking && (
                     <Card sx={{ width: 450, height: 400 }}>
