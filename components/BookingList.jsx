@@ -118,8 +118,8 @@ const BookingList = () => {
                 contentLabel="Booking Details"
             >
                 {selectedBooking && (
-                    <Card>
-                        <TableRow>
+                    <Card sx={{ minWidth: 275 }}>
+                        <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
                             <Typography variant="h6" gutterBottom component="div">Contact Details</Typography>
                             <Table>
                                 <TableHead>
