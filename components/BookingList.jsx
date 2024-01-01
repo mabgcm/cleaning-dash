@@ -19,6 +19,7 @@ const modalStyle = {
         width: '600px',
         height: '375px',
         margin: 'auto',
+        border: 'none'
     },
 };
 
