@@ -3,13 +3,20 @@ import React, { useEffect, useState } from 'react';
 // import BookingDetails from './BookingDetails';
 import Modal from 'react-modal';
 import { FaCircle } from "react-icons/fa";
+import PropTypes from 'prop-types';
+import Box from '@mui/material/Box';
+import Collapse from '@mui/material/Collapse';
+import IconButton from '@mui/material/IconButton';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 
 
@@ -38,6 +45,7 @@ const BookingList = () => {
     const [selectedBooking, setSelectedBooking] = useState(null);
     const [bookings, setBookings] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [open, setOpen] = React.useState(false);
 
     const handleClick = async (id) => {
         try {
@@ -87,14 +95,23 @@ const BookingList = () => {
                             <TableCell align="right">Amount</TableCell>
                         </TableRow>
                     </TableHead>
-                    <TableBody>
-                        {bookings.map((b) => (
+                    {bookings.map((b) => (
+                        <TableBody>
                             <TableRow
                                 key={b._id}
                                 onClick={() => handleClick(b._id)}
                                 style={{ cursor: 'pointer' }}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
+                                <TableCell>
+                                    <IconButton
+                                        aria-label="expand row"
+                                        size="small"
+                                        onClick={() => setOpen(!open)}
+                                    >
+                                        {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                                    </IconButton>
+                                </TableCell>
                                 <TableCell component="th" scope="row">
                                     {b.name}
                                 </TableCell>
@@ -103,25 +120,43 @@ const BookingList = () => {
                                 <TableCell align="right">{b.date}</TableCell>
                                 <TableCell align="right">{b.totalAmount}</TableCell>
                             </TableRow>
-                        ))}
-                    </TableBody>
+                            <TableRow>
+                                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+                                    <Collapse in={open} timeout="auto" unmountOnExit>
+                                        <Box sx={{ margin: 1 }}>
+                                            <Typography variant="h6" gutterBottom component="div">
+                                                Contact Details
+                                            </Typography>
+                                            <Table size="small" aria-label="purchases">
+                                                <TableHead>
+                                                    <TableRow>
+                                                        <TableCell>Phone</TableCell>
+                                                        <TableCell>Email</TableCell>
+                                                        <TableCell>Adress</TableCell>
+                                                        <TableCell>Postal Code</TableCell>
+                                                    </TableRow>
+                                                </TableHead>
+                                                <TableBody>
+
+                                                    <TableRow>
+                                                        <TableCell component="th" scope="row">
+                                                            {b.phone}
+                                                        </TableCell>
+                                                        <TableCell>{b.email}</TableCell>
+                                                        <TableCell >{b.adress}</TableCell>
+                                                        <TableCell >{b.postalCode}</TableCell>
+                                                    </TableRow>
+
+                                                </TableBody>
+                                            </Table>
+                                        </Box>
+                                    </Collapse>
+                                </TableCell>
+                            </TableRow>
+                        </TableBody>
+                    ))}
                 </Table>
             </TableContainer>
-
-            {/* {bookings.map((b) => (
-                <div
-                    key={b._id}
-                    className="p-4 border border-slate-300 my-3 flex justify-between gap-5 items-start"
-                    onClick={() => handleClick(b._id)}
-                    style={{ cursor: 'pointer' }}
-                >
-                    <div>
-                        <h2 className="font-bold text-2xl">{b.name}</h2>
-                        <div>{b.totalAmount}</div>
-                        <div>{b.date}</div>
-                    </div>
-                </div>
-            ))} */}
 
             <Modal
                 isOpen={isModalOpen}
