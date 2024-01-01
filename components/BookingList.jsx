@@ -118,8 +118,8 @@ const BookingList = () => {
                 contentLabel="Booking Details"
             >
                 {selectedBooking && (
-                    <Card sx={{ minWidth: 275 }}>
-                        <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
+                    <Card sx={{ width: 350, height: 500 }}>
+                        <TableRow>
                             <Typography variant="h6" gutterBottom component="div">Contact Details</Typography>
                             <Table>
                                 <TableHead>
@@ -133,10 +133,36 @@ const BookingList = () => {
                                 <TableBody>
                                     <TableRow>
                                         <TableCell>{selectedBooking.phone}</TableCell>
+                                        <TableCell>{selectedBooking.email}</TableCell>
+                                        <TableCell>{selectedBooking.adress}</TableCell>
+                                        <TableCell>{selectedBooking.postalCode}</TableCell>
                                     </TableRow>
                                 </TableBody>
                             </Table>
                         </TableRow>
+
+                        <TableRow>
+                            <Typography variant="h6" gutterBottom component="div">Job Details</Typography>
+                            <Table>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>Bedrooms:</TableCell>
+                                        <TableCell>Bathrooms:</TableCell>
+                                        <TableCell>Area (Sq Feet)</TableCell>
+                                        <TableCell>Extra Items</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    <TableRow>
+                                        <TableCell>{selectedBooking.phone}</TableCell>
+                                        <TableCell>{selectedBooking.email}</TableCell>
+                                        <TableCell>{selectedBooking.adress}</TableCell>
+                                        <TableCell>{selectedBooking.cleaningItems.join(', ')}</TableCell>
+                                    </TableRow>
+                                </TableBody>
+                            </Table>
+                        </TableRow>
+
                     </Card>
                 )}
 
