@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 // import BookingDetails from './BookingDetails';
 import Modal from 'react-modal';
-import { FaCircle } from "react-icons/fa";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -12,7 +11,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
-import { Margin } from '@mui/icons-material';
+import TotalAmount from './TotalAmount';
 
 const modalStyle = {
     content: {
@@ -85,6 +84,9 @@ const BookingList = () => {
 
     return (
         <div className="pr-4">
+            <div className="total-amount w-1/4">
+                <TotalAmount bookings={bookings} />
+            </div>
 
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
