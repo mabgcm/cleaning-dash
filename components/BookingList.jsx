@@ -116,12 +116,13 @@ const BookingList = () => {
                 isOpen={isModalOpen}
                 onRequestClose={closeModal}
                 contentLabel="Booking Details"
+                style={{ width: '500px', margin: 'auto' }}
             >
                 {selectedBooking && (
-                    <Card>
+                    <Card sx={{ width: 450, height: 400 }}>
                         <TableRow>
                             <Typography variant="h6" gutterBottom component="div">Contact Details</Typography>
-                            <Table>
+                            <Table sx={{ width: 400 }}>
                                 <TableHead>
                                     <TableRow>
                                         <TableCell>Phone</TableCell>
@@ -154,9 +155,9 @@ const BookingList = () => {
                                 </TableHead>
                                 <TableBody>
                                     <TableRow>
-                                        <TableCell>{selectedBooking.phone}</TableCell>
-                                        <TableCell>{selectedBooking.email}</TableCell>
-                                        <TableCell>{selectedBooking.adress}</TableCell>
+                                        <TableCell>{selectedBooking.bedrooms}</TableCell>
+                                        <TableCell>{selectedBooking.bathrooms}</TableCell>
+                                        <TableCell>{selectedBooking.squareFeetRange}</TableCell>
                                         <TableCell>{selectedBooking.cleaningItems.join(', ')}</TableCell>
                                     </TableRow>
                                 </TableBody>
