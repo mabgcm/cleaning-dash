@@ -12,10 +12,14 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
+import { Margin } from '@mui/icons-material';
 
 const modalStyle = {
     content: {
-        width: '500px'
+        width: '600px',
+        height: '650px',
+        margin: 'auto',
+
     },
 };
 
