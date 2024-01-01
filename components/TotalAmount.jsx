@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react';
-import { parse } from 'date-fns';
+import { parse, format } from 'date-fns';
 
 
 const TotalAmount = ({ bookings }) => {
