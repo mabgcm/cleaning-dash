@@ -17,9 +17,8 @@ import { Margin } from '@mui/icons-material';
 const modalStyle = {
     content: {
         width: '600px',
-        height: '650px',
+        height: '400px',
         margin: 'auto',
-
     },
 };
 
@@ -127,8 +126,8 @@ const BookingList = () => {
                 {selectedBooking && (
                     <Card sx={{ width: 450, height: 400 }}>
                         <TableRow>
-                            <Typography variant="h6" gutterBottom component="div">Contact Details</Typography>
-                            <Table sx={{ width: 400 }}>
+                            <Typography variant="h6" gutterBottom component="div" sx={{ p: 1 }}>Contact Details</Typography>
+                            <Table sx={{ minWidth: 550 }}>
                                 <TableHead>
                                     <TableRow>
                                         <TableCell>Phone</TableCell>
