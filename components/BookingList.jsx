@@ -3,20 +3,17 @@ import React, { useEffect, useState } from 'react';
 // import BookingDetails from './BookingDetails';
 import Modal from 'react-modal';
 import { FaCircle } from "react-icons/fa";
-import PropTypes from 'prop-types';
-import Box from '@mui/material/Box';
-import Collapse from '@mui/material/Collapse';
-import IconButton from '@mui/material/IconButton';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import Card from '@mui/material/Card';
+import Typography from '@mui/material/Typography';
+
+
 
 
 
@@ -45,7 +42,6 @@ const BookingList = () => {
     const [selectedBooking, setSelectedBooking] = useState(null);
     const [bookings, setBookings] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [open, setOpen] = React.useState(false);
 
     const handleClick = async (id) => {
         try {
@@ -95,23 +91,14 @@ const BookingList = () => {
                             <TableCell align="right">Amount</TableCell>
                         </TableRow>
                     </TableHead>
-                    {bookings.map((b) => (
-                        <TableBody>
+                    <TableBody>
+                        {bookings.map((b) => (
                             <TableRow
                                 key={b._id}
                                 onClick={() => handleClick(b._id)}
                                 style={{ cursor: 'pointer' }}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
-                                <TableCell>
-                                    <IconButton
-                                        aria-label="expand row"
-                                        size="small"
-                                        onClick={() => setOpen(!open)}
-                                    >
-                                        {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-                                    </IconButton>
-                                </TableCell>
                                 <TableCell component="th" scope="row">
                                     {b.name}
                                 </TableCell>
@@ -120,41 +107,8 @@ const BookingList = () => {
                                 <TableCell align="right">{b.date}</TableCell>
                                 <TableCell align="right">{b.totalAmount}</TableCell>
                             </TableRow>
-                            <TableRow>
-                                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-                                    <Collapse in={open} timeout="auto" unmountOnExit>
-                                        <Box sx={{ margin: 1 }}>
-                                            <Typography variant="h6" gutterBottom component="div">
-                                                Contact Details
-                                            </Typography>
-                                            <Table size="small" aria-label="purchases">
-                                                <TableHead>
-                                                    <TableRow>
-                                                        <TableCell>Phone</TableCell>
-                                                        <TableCell>Email</TableCell>
-                                                        <TableCell>Adress</TableCell>
-                                                        <TableCell>Postal Code</TableCell>
-                                                    </TableRow>
-                                                </TableHead>
-                                                <TableBody>
-
-                                                    <TableRow>
-                                                        <TableCell component="th" scope="row">
-                                                            {b.phone}
-                                                        </TableCell>
-                                                        <TableCell>{b.email}</TableCell>
-                                                        <TableCell >{b.adress}</TableCell>
-                                                        <TableCell >{b.postalCode}</TableCell>
-                                                    </TableRow>
-
-                                                </TableBody>
-                                            </Table>
-                                        </Box>
-                                    </Collapse>
-                                </TableCell>
-                            </TableRow>
-                        </TableBody>
-                    ))}
+                        ))}
+                    </TableBody>
                 </Table>
             </TableContainer>
 
@@ -164,56 +118,78 @@ const BookingList = () => {
                 contentLabel="Booking Details"
             >
                 {selectedBooking && (
-                    <div className="p-4 border border-slate-300">
-                        <div>
-                            <h4>Customer Details:</h4>
-                        </div>
-                        <div>
-                            <strong>Name:</strong> {selectedBooking.name}
-                        </div>
-                        <div>
-                            <strong>Phone:</strong> {selectedBooking.phone}
-                        </div>
-                        <div>
-                            <strong>Email:</strong> {selectedBooking.email}
-                        </div>
-                        <div>
-                            <strong>Address:</strong> {selectedBooking.address}
-                        </div>
-                        <div>
-                            <strong>Postal Code:</strong> {selectedBooking.postalCode}
-                        </div>
-                        <div>
-                            <strong>Booking Date:</strong> {selectedBooking.date}
-                        </div>
-                        <div>
-                            Property details
-                        </div>
-                        <div>
-                            <strong>Bedrooms:</strong> {selectedBooking.bedrooms}
-                        </div>
-                        <div>
-                            <strong>Bathrooms:</strong> {selectedBooking.bathrooms}
-                        </div>
-                        <div>
-                            <strong>Size:</strong> {selectedBooking.squareFeetRange} sqft
-                        </div>
-                        <div>
-                            <strong>Extra Items to be cleaned:</strong> {selectedBooking.cleaningItems.join(', ')}
-                        </div>
-                        <div>
-                            <strong>Total Amount:</strong> {selectedBooking.totalAmount}
-                        </div>
-                        <div className='flex'>
-                            <strong className='flex'>Payment Status:</strong> {selectedBooking.paid ? <FaCircle color='green' className='flex' /> : <FaCircle color='red' className='flex' />}
-                        </div>
-                        <div>
-                            <strong>Cleaning Status:</strong> {selectedBooking.completed ? <FaCircle color='green' /> : <FaCircle color='red' />}
-                        </div>
-
-                        <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={closeModal}>Close Details</button>
-                    </div>
+                    <Card>
+                        <TableRow>
+                            <Typography variant="h6" gutterBottom component="div">Contact Details</Typography>
+                            <Table>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>Phone</TableCell>
+                                        <TableCell>Email</TableCell>
+                                        <TableCell>Adress</TableCell>
+                                        <TableCell>Postal Code</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    <TableRow>
+                                        <TableCell>{selectedBooking.phone}</TableCell>
+                                    </TableRow>
+                                </TableBody>
+                            </Table>
+                        </TableRow>
+                    </Card>
                 )}
+
+                {/* <div className="p-4 border border-slate-300">
+                    <div>
+                        <h4>Customer Details:</h4>
+                    </div>
+                    <div>
+                        <strong>Name:</strong> {selectedBooking.name}
+                    </div>
+                    <div>
+                        <strong>Phone:</strong> {selectedBooking.phone}
+                    </div>
+                    <div>
+                        <strong>Email:</strong> {selectedBooking.email}
+                    </div>
+                    <div>
+                        <strong>Address:</strong> {selectedBooking.address}
+                    </div>
+                    <div>
+                        <strong>Postal Code:</strong> {selectedBooking.postalCode}
+                    </div>
+                    <div>
+                        <strong>Booking Date:</strong> {selectedBooking.date}
+                    </div>
+                    <div>
+                        Property details
+                    </div>
+                    <div>
+                        <strong>Bedrooms:</strong> {selectedBooking.bedrooms}
+                    </div>
+                    <div>
+                        <strong>Bathrooms:</strong> {selectedBooking.bathrooms}
+                    </div>
+                    <div>
+                        <strong>Size:</strong> {selectedBooking.squareFeetRange} sqft
+                    </div>
+                    <div>
+                        <strong>Extra Items to be cleaned:</strong> {selectedBooking.cleaningItems.join(', ')}
+                    </div>
+                    <div>
+                        <strong>Total Amount:</strong> {selectedBooking.totalAmount}
+                    </div>
+                    <div className='flex'>
+                        <strong className='flex'>Payment Status:</strong> {selectedBooking.paid ? <FaCircle color='green' className='flex' /> : <FaCircle color='red' className='flex' />}
+                    </div>
+                    <div>
+                        <strong>Cleaning Status:</strong> {selectedBooking.completed ? <FaCircle color='green' /> : <FaCircle color='red' />}
+                    </div>
+
+                    <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={closeModal}>Close Details</button>
+                </div> */}
+
             </Modal>
         </div>
     );
