@@ -106,16 +106,17 @@ const BookingList = () => {
                             <TableRow
                                 key={b._id}
                                 onClick={() => handleClick(b._id)}
-                                style={{ cursor: 'pointer', color: b.completed ? 'green' : 'red' }}
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                style={{ cursor: 'pointer' }}
+                                // sx={{ color: b.completed ? 'success.main' : 'warning.main' }}
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 }, color: b.completed ? 'success.main' : 'warning.main' }}
                             >
                                 <TableCell component="th" scope="row">
                                     {b.name}
                                 </TableCell>
-                                <TableCell align="right">{b.cleaningType}</TableCell>
-                                <TableCell align="right">{b.city}</TableCell>
-                                <TableCell align="right">{b.date}</TableCell>
-                                <TableCell align="right">{b.totalAmount}</TableCell>
+                                <TableCell>{b.cleaningType}</TableCell>
+                                <TableCell>{b.city}</TableCell>
+                                <TableCell>{b.date}</TableCell>
+                                <TableCell>{b.totalAmount}</TableCell>
                                 <TableCell>{b.completed ? 'Yes' : 'No'}</TableCell>
                             </TableRow>
                         ))}
