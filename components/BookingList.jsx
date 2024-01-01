@@ -124,7 +124,7 @@ const BookingList = () => {
                 style={modalStyle}
             >
                 {selectedBooking && (
-                    <Card sx={{ width: 450, height: 400 }}>
+                    <Card sx={{ width: 'auto', height: 'auto' }}>
                         <TableRow>
                             <Typography variant="h6" gutterBottom component="div" sx={{ p: 1 }}>Contact Details</Typography>
                             <Table sx={{ minWidth: 550 }}>
