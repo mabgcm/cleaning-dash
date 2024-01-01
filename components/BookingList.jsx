@@ -1,6 +1,5 @@
 'use client'
 import React, { useEffect, useState } from 'react';
-// import BookingDetails from './BookingDetails';
 import Modal from 'react-modal';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -36,7 +35,10 @@ const getBookings = async () => {
         // Ensure that the 'bookings' property is present in the data, otherwise default to an empty array
         const bookings = data && data.bookings ? data.bookings : [];
 
-        return bookings;
+        // Sort bookings from new to old
+        const sortedBookings = bookings.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        return sortedBookings;
     } catch (error) {
         console.log("Error loading bookings: ", error);
         return []; // Return an empty array in case of an error
@@ -93,10 +95,10 @@ const BookingList = () => {
                     <TableHead >
                         <TableRow>
                             <TableCell>Client</TableCell>
-                            <TableCell align="right">Package</TableCell>
-                            <TableCell align="right">Location</TableCell>
-                            <TableCell align="right">Date</TableCell>
-                            <TableCell align="right">Amount</TableCell>
+                            <TableCell>Package</TableCell>
+                            <TableCell>Location</TableCell>
+                            <TableCell>Date</TableCell>
+                            <TableCell>Amount</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -104,7 +106,7 @@ const BookingList = () => {
                             <TableRow
                                 key={b._id}
                                 onClick={() => handleClick(b._id)}
-                                style={{ cursor: 'pointer' }}
+                                style={{ cursor: 'pointer', color: b.completed ? 'green' : 'red' }}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
                                 <TableCell component="th" scope="row">
@@ -114,6 +116,7 @@ const BookingList = () => {
                                 <TableCell align="right">{b.city}</TableCell>
                                 <TableCell align="right">{b.date}</TableCell>
                                 <TableCell align="right">{b.totalAmount}</TableCell>
+                                <TableCell>{b.completed ? 'Yes' : 'No'}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
