@@ -5,10 +5,12 @@ import { parse, format } from 'date-fns';
 
 const TotalAmount = ({ bookings }) => {
     const [monthlyTotals, setMonthlyTotals] = useState({});
+    const [totalAllMonths, setTotalAllMonths] = useState(0);
 
     // Function to calculate monthly totals
     const calculateMonthlyTotals = (bookings) => {
         const totals = {};
+        let totalAmountAllMonths = 0;
 
         bookings.forEach((booking) => {
             if (booking.paid) {
@@ -20,9 +22,11 @@ const TotalAmount = ({ bookings }) => {
                 }
 
                 totals[month] += booking.totalAmount;
+                totalAmountAllMonths += booking.totalAmount;
             }
         });
 
+        setTotalAllMonths(totalAmountAllMonths);
         return totals;
     };
 
@@ -44,6 +48,10 @@ const TotalAmount = ({ bookings }) => {
                         {monthlyTotals[month]}
                     </div>
                 ))}
+                <div>
+                    <strong>Total All Months: </strong>
+                    {totalAllMonths}
+                </div>
             </div>
         </div>
     );
