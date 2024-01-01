@@ -39,19 +39,19 @@ const TotalAmount = ({ bookings }) => {
     return (
         <div className="p-4 border border-slate-300">
             <div>
-                <h4>Total Amount Month by Month:</h4>
+                <h4>Revenue:</h4>
             </div>
             <div>
+                <div>
+                    <strong>{totalAllMonths}</strong>
+
+                </div>
                 {Object.keys(monthlyTotals).map((month) => (
                     <div key={month}>
                         <strong>{`${month}: `}</strong>
                         {monthlyTotals[month]}
                     </div>
                 ))}
-                <div>
-                    <strong>Total All Months: </strong>
-                    {totalAllMonths}
-                </div>
             </div>
         </div>
     );
