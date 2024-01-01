@@ -118,7 +118,7 @@ const BookingList = () => {
                 contentLabel="Booking Details"
             >
                 {selectedBooking && (
-                    <Card sx={{ width: 350, height: 500 }}>
+                    <Card>
                         <TableRow>
                             <Typography variant="h6" gutterBottom component="div">Contact Details</Typography>
                             <Table sx={{ width: 300 }}>
