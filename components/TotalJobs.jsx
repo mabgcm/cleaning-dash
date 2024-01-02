@@ -9,6 +9,11 @@ const TotalJobs = ({ bookings }) => {
 
     useEffect(() => {
         const calculateTotalJobs = () => {
+            if (bookings.length === 0) {
+                // If bookings is empty, return early
+                return;
+            }
+
             const today = new Date();
 
             const weeklyJobs = bookings.filter((booking) => isThisWeek(new Date(booking.date), { weekStartsOn: 1 }));
@@ -21,7 +26,7 @@ const TotalJobs = ({ bookings }) => {
         };
 
         calculateTotalJobs();
-    }, [bookings]);
+    }, [bookings]); // Make sure to include bookings as a dependency
 
     return (
         <div className="p-4 border border-slate-300">
