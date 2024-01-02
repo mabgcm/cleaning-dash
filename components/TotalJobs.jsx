@@ -1,16 +1,20 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 
-const TotalJobsDone = ({ bookings }) => {
+const TotalJobs = ({ bookings }) => {
     const [totalJobsDone, setTotalJobsDone] = useState(0);
+    const [totalJobsLeft, setTotalJobsLeft] = useState(0);
 
     useEffect(() => {
-        const calculateTotalJobsDone = () => {
+        const calculateTotalJobs = () => {
             const doneBookings = bookings.filter((booking) => booking.completed);
+            const remainingBookings = bookings.filter((booking) => !booking.completed);
+
             setTotalJobsDone(doneBookings.length);
+            setTotalJobsLeft(remainingBookings.length);
         };
 
-        calculateTotalJobsDone();
+        calculateTotalJobs();
     }, [bookings]);
 
     return (
@@ -19,8 +23,12 @@ const TotalJobsDone = ({ bookings }) => {
             <div>
                 <strong>{totalJobsDone}</strong>
             </div>
+            <h4>Total Jobs Left:</h4>
+            <div>
+                <strong>{totalJobsLeft}</strong>
+            </div>
         </div>
     );
 };
 
-export default TotalJobsDone;
+export default TotalJobs;
