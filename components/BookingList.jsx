@@ -12,6 +12,7 @@ import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import TotalAmount from './TotalAmount';
 import { FaCircle } from "react-icons/fa";
+import TotalJobs from './TotalJobs';
 
 
 const modalStyle = {
@@ -99,9 +100,15 @@ const BookingList = () => {
 
     return (
         <div className="pr-4">
-            <div className="total-amount w-1/4">
-                <TotalAmount bookings={bookings} />
+            <div className="row flex">
+                <div className="total-amount w-1/4">
+                    <TotalAmount bookings={bookings} />
+                </div>
+                <div className="total-amount w-1/4">
+                    <TotalJobs bookings={bookings} />
+                </div>
             </div>
+
 
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
