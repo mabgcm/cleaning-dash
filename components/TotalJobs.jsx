@@ -1,5 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react';
+import Card from '@mui/material/Card';
+
 
 const TotalJobs = ({ bookings }) => {
     const [totalJobsDone, setTotalJobsDone] = useState(0);
@@ -18,16 +20,17 @@ const TotalJobs = ({ bookings }) => {
     }, [bookings]);
 
     return (
-        <div className="p-4 border border-slate-300">
-            <h4>Total Jobs Done:</h4>
+        <Card className="p-4 border border-slate-300">
+
             <div>
                 <strong>{totalJobsDone}</strong>
+                <p>jobs done</p>
             </div>
-            <h4>Total Jobs Left:</h4>
             <div>
                 <strong>{totalJobsLeft}</strong>
+                <p>jobs left</p>
             </div>
-        </div>
+        </Card>
     );
 };
 

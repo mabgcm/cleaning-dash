@@ -1,6 +1,8 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import { parse, format } from 'date-fns';
+import Card from '@mui/material/Card';
+
 
 
 const TotalAmount = ({ bookings }) => {
@@ -30,14 +32,14 @@ const TotalAmount = ({ bookings }) => {
         return totals;
     };
 
-    // Update monthly totals when bookings change
     useEffect(() => {
         const totals = calculateMonthlyTotals(bookings);
         setMonthlyTotals(totals);
     }, [bookings]);
 
     return (
-        <div className="p-4 border border-slate-300">
+        <Card
+            className="p-4 border border-slate-300">
             <div>
                 <h4>Revenue:</h4>
             </div>
@@ -53,7 +55,7 @@ const TotalAmount = ({ bookings }) => {
                     </div>
                 ))}
             </div>
-        </div>
+        </Card>
     );
 };
 
