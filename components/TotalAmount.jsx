@@ -39,6 +39,7 @@ const TotalAmount = ({ bookings }) => {
 
     return (
         <Card
+            sx={{ height: 200 }}
             className="p-4 border border-slate-300">
             <div>
                 <h4>Revenue:</h4>

@@ -20,7 +20,7 @@ const TotalJobs = ({ bookings }) => {
     }, [bookings]);
 
     return (
-        <Card className="p-4 border border-slate-300">
+        <Card sx={{ height: 200 }} className="p-4 border border-slate-300">
 
             <div>
                 <strong>{totalJobsDone}</strong>
