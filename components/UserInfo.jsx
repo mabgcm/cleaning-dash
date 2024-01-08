@@ -101,7 +101,7 @@ export default function DrawerAppBar(props) {
           </Box>
           {session && (
             <Box sx={{ display: { xs: 'none', sm: 'block' }, ml: 2 }}>
-              <Button
+              <Button sx={{ bgcolor: 'primary.main' }}
                 variant="outlined"
                 color='error'
                 onClick={() => signOut()}>
