@@ -23,6 +23,7 @@ const navItems = ['Home', 'About', 'Contact'];
 export default function DrawerAppBar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const { data: session } = useSession();
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -76,6 +77,22 @@ export default function DrawerAppBar(props) {
               </Button>
             ))}
           </Box>
+          {session && (
+            <Box sx={{ display: { xs: 'none', sm: 'block' }, ml: 2 }}>
+              <Typography sx={{ color: '#fff' }}>
+                {session.user.name}
+              </Typography>
+              <Typography sx={{ color: '#fff' }}>
+                {session.user.email}
+              </Typography>
+              <Button
+                variant="outlined"
+                color='error'
+                onClick={() => signOut()}>
+                Log Out
+              </Button>
+            </Box>
+          )}
         </Toolbar>
       </AppBar>
       <nav>
@@ -104,26 +121,3 @@ export default function DrawerAppBar(props) {
     </Box>
   );
 }
-
-// Example usage of UserInfo component
-// const UserInfo = () => {
-//   const { data: session } = useSession();
-//   return (
-//     <div className="grid place-items-center h-50">
-//       <div className="shadow-lg p-8 bg-zince-300/10 flex flex-col gap-2 my-6">
-//         <div>
-//           Name: <span className="font-bold">{session?.user?.name}</span>
-//         </div>
-//         <div>
-//           Email: <span className="font-bold">{session?.user?.email}</span>
-//         </div>
-//         <Button
-//           variant="outlined"
-//           color='error'
-//           onClick={() => signOut()}>
-//           Log Out
-//         </Button>
-//       </div>
-//     </div >
-//   );
-// }
