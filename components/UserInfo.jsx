@@ -66,7 +66,7 @@ export default function DrawerAppBar(props) {
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex' }} className='mt-4'>
       <CssBaseline />
       <AppBar component="nav">
         <Toolbar>
@@ -107,7 +107,7 @@ export default function DrawerAppBar(props) {
           {session && (
             <Box sx={{ display: { xs: 'none', sm: 'block' }, ml: 2 }}>
               <Button sx={{ bgcolor: 'primary.main' }}
-                variant="outlined"
+                variant="contained"
                 color='error'
                 onClick={() => signOut()}>
                 Log Out
