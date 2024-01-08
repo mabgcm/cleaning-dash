@@ -32,7 +32,7 @@ export default function DrawerAppBar(props) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
+        The Neat Guys
       </Typography>
       <Divider />
       <List>
@@ -40,9 +40,9 @@ export default function DrawerAppBar(props) {
         {session ? (
           <>
             <ListItem disablePadding>
-              <ListItemButton sx={{ textAlign: 'center' }}>
+              {/* <ListItemButton sx={{ textAlign: 'center' }}>
                 <ListItemText primary={session.user.name} />
-              </ListItemButton>
+              </ListItemButton> */}
             </ListItem>
             <ListItem disablePadding>
               <ListItemButton sx={{ textAlign: 'center' }}>
@@ -84,7 +84,7 @@ export default function DrawerAppBar(props) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
-            MUI
+            The Neat Guys
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {session ? (
@@ -128,12 +128,12 @@ export default function DrawerAppBar(props) {
           {drawer}
         </Drawer>
       </nav>
-      <Box component="main" sx={{ p: 3 }}>
+      {/* <Box component="main" sx={{ p: 3 }}>
         <Toolbar />
         <Typography>
           Lorem ipsum
         </Typography>
-      </Box>
+      </Box> */}
     </Box>
   );
 }
