@@ -39,14 +39,14 @@ const TotalAmount = ({ bookings }) => {
 
     return (
         <Card
-            sx={{ height: 200 }}
+            sx={{ height: 200, bgcolor: 'secondary.main' }}
             className="p-4 border border-slate-300">
             <div>
-                <h4>Revenue:</h4>
+                {/* <h4>Revenue:</h4> */}
             </div>
             <div>
                 <div>
-                    <strong>{totalAllMonths}</strong>
+                    <strong sx={{ color: '#fff', fontSize: 26 }}>{totalAllMonths}</strong>
 
                 </div>
                 {Object.keys(monthlyTotals).map((month) => (
