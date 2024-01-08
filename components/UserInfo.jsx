@@ -18,7 +18,7 @@ import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
 
 const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Contact'];
+const navItems = ['Home', 'About'];
 
 export default function DrawerAppBar(props) {
   const { window } = props;
@@ -32,7 +32,7 @@ export default function DrawerAppBar(props) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
+        THE NEAT GUYS
       </Typography>
       <Divider />
       <List>
@@ -68,7 +68,7 @@ export default function DrawerAppBar(props) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
-            MUI
+            THE NEAT GUYS
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
@@ -78,7 +78,7 @@ export default function DrawerAppBar(props) {
             ))}
           </Box>
           {session && (
-            <Box sx={{ display: { xs: 'none', sm: 'block' }, ml: 2 }}>
+            <Box sx={{ display: { xs: 'none', sm: 'flex' }, ml: 2 }}>
               <Typography sx={{ color: '#fff' }}>
                 {session.user.name}
               </Typography>
