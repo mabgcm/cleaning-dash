@@ -99,9 +99,9 @@ const BookingList = () => {
     }
 
     return (
-        <div className="pr-4 mr-2" style={{ padding: 30 }}>
+        <div className="pr-4" style={{ padding: 30 }}>
             <div className="row flex">
-                <div className="total-amount w-1/4">
+                <div className="total-amount w-1/4 mr-2">
                     <TotalAmount bookings={bookings} />
                 </div>
                 <div className="total-amount w-1/4">

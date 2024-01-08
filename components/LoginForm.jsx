@@ -1,5 +1,5 @@
 "use client"
-import Link from "next/link";
+// import Link from "next/link";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -57,9 +57,9 @@ export default function LoginForm() {
             </div>
           )}
 
-          <Link className="text-sm mt-3 text-right" href={"/register"}>
+          {/* <Link className="text-sm mt-3 text-right" href={"/register"}>
             Not have an account?? <span className="underline">Register</span>
-          </Link>
+          </Link> */}
         </form>
       </div>
     </div>
