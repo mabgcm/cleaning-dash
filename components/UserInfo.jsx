@@ -32,7 +32,7 @@ export default function DrawerAppBar(props) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        The Neat Guys
+        {session ? session.user.name : 'The Neat Guys'}
       </Typography>
       <Divider />
       <List>
@@ -84,7 +84,7 @@ export default function DrawerAppBar(props) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
-            The Neat Guys
+            {session ? session.user.name : 'The Neat Guys'}
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {session ? (
@@ -99,6 +99,11 @@ export default function DrawerAppBar(props) {
               ))
             )}
           </Box>
+          {session && (
+            <Box>
+              <Typography>{session.user.email}</Typography>
+            </Box>
+          )}
           {session && (
             <Box sx={{ display: { xs: 'none', sm: 'block' }, ml: 2 }}>
               <Button sx={{ bgcolor: 'primary.main' }}
