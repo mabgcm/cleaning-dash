@@ -48,14 +48,14 @@ const TotalAmount = ({ bookings }) => {
             </div>
             <div>
                 <Box sx={{ color: '#fff', fontSize: 26 }}>
-                    <p>{totalAllMonths}</p>
+                    <p>C$ {totalAllMonths}</p>
 
                 </Box>
                 {Object.keys(monthlyTotals).map((month) => (
-                    <div key={month}>
+                    <Box sx={{ color: '#fff', fontSize: 18 }} key={month}>
                         <strong>{`${month}: `}</strong>
                         {monthlyTotals[month]}
-                    </div>
+                    </Box>
                 ))}
             </div>
         </Card>
