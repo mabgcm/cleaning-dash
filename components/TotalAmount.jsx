@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { parse, format } from 'date-fns';
 import Card from '@mui/material/Card';
+import Box from '@mui/material/Box';
+
 
 
 
@@ -45,10 +47,10 @@ const TotalAmount = ({ bookings }) => {
                 {/* <h4>Revenue:</h4> */}
             </div>
             <div>
-                <div>
-                    <p sx={{ color: '#fff', fontSize: 26 }}>{totalAllMonths}</p>
+                <Box sx={{ color: '#fff', fontSize: 26 }}>
+                    <p>{totalAllMonths}</p>
 
-                </div>
+                </Box>
                 {Object.keys(monthlyTotals).map((month) => (
                     <div key={month}>
                         <strong>{`${month}: `}</strong>
