@@ -20,7 +20,7 @@ const modalStyle = {
         width: '600px',
         height: '375px',
         margin: 'auto',
-        border: 'none'
+        border: '1px solid black'
     },
 };
 
@@ -212,56 +212,6 @@ const BookingList = () => {
 
                     </Card>
                 )}
-
-                {/* <div className="p-4 border border-slate-300">
-                    <div>
-                        <h4>Customer Details:</h4>
-                    </div>
-                    <div>
-                        <strong>Name:</strong> {selectedBooking.name}
-                    </div>
-                    <div>
-                        <strong>Phone:</strong> {selectedBooking.phone}
-                    </div>
-                    <div>
-                        <strong>Email:</strong> {selectedBooking.email}
-                    </div>
-                    <div>
-                        <strong>Address:</strong> {selectedBooking.address}
-                    </div>
-                    <div>
-                        <strong>Postal Code:</strong> {selectedBooking.postalCode}
-                    </div>
-                    <div>
-                        <strong>Booking Date:</strong> {selectedBooking.date}
-                    </div>
-                    <div>
-                        Property details
-                    </div>
-                    <div>
-                        <strong>Bedrooms:</strong> {selectedBooking.bedrooms}
-                    </div>
-                    <div>
-                        <strong>Bathrooms:</strong> {selectedBooking.bathrooms}
-                    </div>
-                    <div>
-                        <strong>Size:</strong> {selectedBooking.squareFeetRange} sqft
-                    </div>
-                    <div>
-                        <strong>Extra Items to be cleaned:</strong> {selectedBooking.cleaningItems.join(', ')}
-                    </div>
-                    <div>
-                        <strong>Total Amount:</strong> {selectedBooking.totalAmount}
-                    </div>
-                    <div className='flex'>
-                        <strong className='flex'>Payment Status:</strong> {selectedBooking.paid ? <FaCircle color='green' className='flex' /> : <FaCircle color='red' className='flex' />}
-                    </div>
-                    <div>
-                        <strong>Cleaning Status:</strong> {selectedBooking.completed ? <FaCircle color='green' /> : <FaCircle color='red' />}
-                    </div>
-
-                    <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={closeModal}>Close Details</button>
-                </div> */}
 
             </Modal>
         </div>
