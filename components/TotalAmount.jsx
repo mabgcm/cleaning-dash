@@ -47,14 +47,14 @@ const TotalAmount = ({ bookings }) => {
                 {/* <h4>Revenue:</h4> */}
             </div>
             <div>
-                <Box sx={{ color: '#fff', fontSize: 26 }}>
+                <Box sx={{ color: '#fff', fontSize: 26, fontWeight: 'bold' }}>
                     <p>C$ {totalAllMonths}</p>
 
                 </Box>
                 {Object.keys(monthlyTotals).map((month) => (
-                    <Box sx={{ color: '#fff', fontSize: 18 }} key={month}>
+                    <Box sx={{ color: '#fff', fontSize: 15, textAlign: 'right' }} key={month}>
                         <strong>{`${month}: `}</strong>
-                        {monthlyTotals[month]}
+                        C$ {monthlyTotals[month]}
                     </Box>
                 ))}
             </div>
