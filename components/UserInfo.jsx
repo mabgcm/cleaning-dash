@@ -32,17 +32,33 @@ export default function DrawerAppBar(props) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        THE NEAT GUYS
+        MUI
       </Typography>
       <Divider />
       <List>
-        {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        {/* Display user name and email if authenticated, otherwise show navItems */}
+        {session ? (
+          <>
+            <ListItem disablePadding>
+              <ListItemButton sx={{ textAlign: 'center' }}>
+                <ListItemText primary={session.user.name} />
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton sx={{ textAlign: 'center' }}>
+                <ListItemText primary={session.user.email} />
+              </ListItemButton>
+            </ListItem>
+          </>
+        ) : (
+          navItems.map((item) => (
+            <ListItem key={item} disablePadding>
+              <ListItemButton sx={{ textAlign: 'center' }}>
+                <ListItemText primary={item} />
+              </ListItemButton>
+            </ListItem>
+          ))
+        )}
       </List>
     </Box>
   );
@@ -68,23 +84,23 @@ export default function DrawerAppBar(props) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
-            THE NEAT GUYS
+            MUI
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            {navItems.map((item) => (
-              <Button key={item} sx={{ color: '#fff' }}>
-                {item}
-              </Button>
-            ))}
+            {session ? (
+              // Display nothing in this block when authenticated (user name and email are in the drawer)
+              null
+            ) : (
+              // Display navItems when not authenticated
+              navItems.map((item) => (
+                <Button key={item} sx={{ color: '#fff' }}>
+                  {item}
+                </Button>
+              ))
+            )}
           </Box>
           {session && (
-            <Box sx={{ display: { xs: 'none', sm: 'flex' }, ml: 2 }}>
-              <Typography sx={{ color: '#fff' }}>
-                {session.user.name}
-              </Typography>
-              <Typography sx={{ color: '#fff' }}>
-                {session.user.email}
-              </Typography>
+            <Box sx={{ display: { xs: 'none', sm: 'block' }, ml: 2 }}>
               <Button
                 variant="outlined"
                 color='error'
