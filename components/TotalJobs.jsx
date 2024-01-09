@@ -16,6 +16,8 @@ const TotalJobs = ({ bookings }) => {
     const [totalJobsLeft, setTotalJobsLeft] = useState({ today: 0, week: 0, month: 0 });
 
     useEffect(() => {
+        console.log('Bookings in TotalJobs component:', bookings);
+
         const calculateTotalJobs = () => {
             const currentDate = new Date();
             const startOfToday = startOfDay(currentDate);
