@@ -114,7 +114,7 @@ const TotalJobs = ({ bookings }) => {
 
     return (
         <Card
-            sx={{ height: 300, bgcolor: 'primary.main' }}
+            sx={{ bgcolor: 'primary.main' }}
             className="p-4 border border-slate-300">
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
@@ -122,11 +122,11 @@ const TotalJobs = ({ bookings }) => {
                         <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>{completedJobs}</Typography>
                         <Typography sx={{ fontSize: 12 }}>Completed</Typography>
                     </Box>
-                    <Box sx={{ color: '#fff', alignItems: 'center', display: 'flex', flexDirection: 'column', mx: 2 }}>
+                    <Box sx={{ color: 'yellow', alignItems: 'center', display: 'flex', flexDirection: 'column', mx: 2 }}>
                         <Typography sx={{ fontSize: 26, fontWeight: 'bold' }}>{totalJobs}</Typography>
                         <Typography sx={{ fontSize: 12 }}>Total Jobs</Typography>
                     </Box>
-                    <Box sx={{ color: '#fff', alignItems: 'center', display: 'flex', flexDirection: 'column', }}>
+                    <Box sx={{ color: 'yellow', alignItems: 'center', display: 'flex', flexDirection: 'column', }}>
                         <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>{notCompletedJobs}</Typography>
                         <Typography sx={{ fontSize: 12 }}>Queued</Typography>
                     </Box>
