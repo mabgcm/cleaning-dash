@@ -24,20 +24,37 @@ const TotalJobs = ({ bookings }) => {
             const startOfThisMonth = startOfMonth(currentDate);
             const endOfThisMonth = endOfMonth(currentDate);
 
+            console.log('Current Date:', currentDate);
+            console.log('Start of Today:', startOfToday);
+            console.log('Start of This Week:', startOfThisWeek);
+            console.log('End of This Week:', endOfThisWeek);
+            console.log('Start of This Month:', startOfThisMonth);
+            console.log('End of This Month:', endOfThisMonth);
+
+
             const todayBookings = bookings.filter((booking) => {
                 const bookingDate = new Date(booking.date);
                 return booking.completed && isSameDay(bookingDate, currentDate);
             });
+
+            console.log('Today Bookings:', todayBookings);
+
 
             const weekBookings = bookings.filter((booking) => {
                 const bookingDate = new Date(booking.date);
                 return booking.completed && isWithinIntervalFn(bookingDate, { start: startOfThisWeek, end: endOfThisWeek });
             });
 
+            console.log('This Week Bookings:', weekBookings);
+
+
             const monthBookings = bookings.filter((booking) => {
                 const bookingDate = new Date(booking.date);
                 return booking.completed && isWithinIntervalFn(bookingDate, { start: startOfThisMonth, end: endOfThisMonth });
             });
+
+            console.log('This Month Bookings:', monthBookings);
+
 
             setTotalJobsDone({
                 today: todayBookings.length,
@@ -48,6 +65,10 @@ const TotalJobs = ({ bookings }) => {
             const remainingToday = bookings.filter((booking) => !booking.completed && isSameDay(new Date(booking.date), currentDate)).length;
             const remainingWeek = bookings.filter((booking) => !booking.completed && isWithinIntervalFn(new Date(booking.date), { start: startOfThisWeek, end: endOfThisWeek })).length;
             const remainingMonth = bookings.filter((booking) => !booking.completed && isWithinIntervalFn(new Date(booking.date), { start: startOfThisMonth, end: endOfThisMonth })).length;
+
+            console.log('Remaining Today:', remainingToday);
+            console.log('Remaining Week:', remainingWeek);
+            console.log('Remaining Month:', remainingMonth);
 
             setTotalJobsLeft({
                 today: remainingToday,
