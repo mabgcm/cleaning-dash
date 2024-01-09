@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import Card from '@mui/material/Card';
+import { startOfDay, startOfWeek, endOfWeek, startOfMonth, endOfMonth, isWithinInterval, isSameDay } from 'date-fns';
 
 const TotalJobs = ({ bookings }) => {
     const [totalJobsDone, setTotalJobsDone] = useState({ today: 0, week: 0, month: 0 });
@@ -9,31 +10,26 @@ const TotalJobs = ({ bookings }) => {
     useEffect(() => {
         const calculateTotalJobs = () => {
             const currentDate = new Date();
-            const startOfWeek = new Date(currentDate);
-            const endOfWeek = new Date(currentDate);
-            const startOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
-            const endOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
-
-            startOfWeek.setDate(currentDate.getDate() - currentDate.getDay() + (currentDate.getDay() === 0 ? -6 : 1));
-            endOfWeek.setDate(currentDate.getDate() - currentDate.getDay() + 7);
+            const startOfToday = startOfDay(currentDate);
+            const startOfThisWeek = startOfWeek(currentDate);
+            const endOfThisWeek = endOfWeek(currentDate);
+            const startOfThisMonth = startOfMonth(currentDate);
+            const endOfThisMonth = endOfMonth(currentDate);
 
             const todayBookings = bookings.filter((booking) => {
                 const bookingDate = new Date(booking.date);
                 return booking.completed && isSameDay(bookingDate, currentDate);
             });
-            console.log('Today B', todayBookings)
 
             const weekBookings = bookings.filter((booking) => {
                 const bookingDate = new Date(booking.date);
-                return booking.completed && bookingDate >= startOfWeek && bookingDate <= endOfWeek;
+                return booking.completed && isWithinInterval(bookingDate, { start: startOfThisWeek, end: endOfThisWeek });
             });
-            console.log('Week B', weekBookings)
 
             const monthBookings = bookings.filter((booking) => {
                 const bookingDate = new Date(booking.date);
-                return booking.completed && bookingDate >= startOfMonth && bookingDate <= endOfMonth;
+                return booking.completed && isWithinInterval(bookingDate, { start: startOfThisMonth, end: endOfThisMonth });
             });
-            console.log('Month B', monthBookings)
 
             setTotalJobsDone({
                 today: todayBookings.length,
@@ -42,8 +38,8 @@ const TotalJobs = ({ bookings }) => {
             });
 
             const remainingToday = bookings.filter((booking) => !booking.completed && isSameDay(new Date(booking.date), currentDate)).length;
-            const remainingWeek = bookings.filter((booking) => !booking.completed && isWithinRange(new Date(booking.date), startOfWeek, endOfWeek)).length;
-            const remainingMonth = bookings.filter((booking) => !booking.completed && isWithinRange(new Date(booking.date), startOfMonth, endOfMonth)).length;
+            const remainingWeek = bookings.filter((booking) => !booking.completed && isWithinInterval(new Date(booking.date), { start: startOfThisWeek, end: endOfThisWeek })).length;
+            const remainingMonth = bookings.filter((booking) => !booking.completed && isWithinInterval(new Date(booking.date), { start: startOfThisMonth, end: endOfThisMonth })).length;
 
             setTotalJobsLeft({
                 today: remainingToday,
@@ -54,14 +50,6 @@ const TotalJobs = ({ bookings }) => {
 
         calculateTotalJobs();
     }, [bookings]);
-
-    const isSameDay = (date1, date2) => {
-        return date1.getDate() === date2.getDate() && date1.getMonth() === date2.getMonth() && date1.getFullYear() === date2.getFullYear();
-    };
-
-    const isWithinRange = (date, start, end) => {
-        return date >= start && date <= end;
-    };
 
     return (
         <Card sx={{ height: 200 }} className="p-4 border border-slate-300">
