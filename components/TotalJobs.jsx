@@ -15,6 +15,7 @@ const TotalJobs = ({ bookings }) => {
                 const bookingDate = new Date(booking.date);
                 return booking.completed && isSameDay(bookingDate, currentDate);
             });
+            console.log('Today Bookings:', todayBookings);
 
             // Filter bookings for this week
             const startOfWeek = getStartOfWeek(currentDate);
