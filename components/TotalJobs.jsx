@@ -1,10 +1,11 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import Card from '@mui/material/Card';
+import { startOfWeek, endOfWeek, startOfMonth, endOfMonth, isWithinInterval, isSameDay } from 'date-fns';
 
 const TotalJobs = ({ bookings }) => {
-    const [totalJobsDone, setTotalJobsDone] = useState(0);
-    const [totalJobsLeft, setTotalJobsLeft] = useState(0);
+    const [totalJobsDone, setTotalJobsDone] = useState({ today: 0, week: 0, month: 0 });
+    const [totalJobsLeft, setTotalJobsLeft] = useState({ today: 0, week: 0, month: 0 });
 
     useEffect(() => {
         const calculateTotalJobs = () => {
@@ -15,25 +16,22 @@ const TotalJobs = ({ bookings }) => {
                 const bookingDate = new Date(booking.date);
                 return booking.completed && isSameDay(bookingDate, currentDate);
             });
-            console.log('Today Bookings:', todayBookings);
 
             // Filter bookings for this week
-            const startOfWeek = getStartOfWeek(currentDate);
-            const endOfWeek = getEndOfWeek(currentDate);
+            const startOfWeekDate = getStartOfWeek(currentDate);
+            const endOfWeekDate = getEndOfWeek(currentDate);
             const weekBookings = bookings.filter((booking) => {
                 const bookingDate = new Date(booking.date);
-                return booking.completed && isWithinRange(bookingDate, startOfWeek, endOfWeek);
+                return booking.completed && isWithinInterval(bookingDate, { start: startOfWeekDate, end: endOfWeekDate });
             });
-            console.log('This week Bookings:', weekBookings);
 
             // Filter bookings for this month
-            const startOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
-            const endOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+            const startOfMonthDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+            const endOfMonthDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
             const monthBookings = bookings.filter((booking) => {
                 const bookingDate = new Date(booking.date);
-                return booking.completed && isWithinRange(bookingDate, startOfMonth, endOfMonth);
+                return booking.completed && isWithinInterval(bookingDate, { start: startOfMonthDate, end: endOfMonthDate });
             });
-            console.log('This ,omth Bookings:', monthBookings);
 
             setTotalJobsDone({
                 today: todayBookings.length,
@@ -43,8 +41,8 @@ const TotalJobs = ({ bookings }) => {
 
             // Calculate total jobs left for today, this week, and this month
             const remainingToday = bookings.filter((booking) => !booking.completed && isSameDay(new Date(booking.date), currentDate)).length;
-            const remainingWeek = bookings.filter((booking) => !booking.completed && isWithinRange(new Date(booking.date), startOfWeek, endOfWeek)).length;
-            const remainingMonth = bookings.filter((booking) => !booking.completed && isWithinRange(new Date(booking.date), startOfMonth, endOfMonth)).length;
+            const remainingWeek = bookings.filter((booking) => !booking.completed && isWithinInterval(new Date(booking.date), { start: startOfWeekDate, end: endOfWeekDate })).length;
+            const remainingMonth = bookings.filter((booking) => !booking.completed && isWithinInterval(new Date(booking.date), { start: startOfMonthDate, end: endOfMonthDate })).length;
 
             setTotalJobsLeft({
                 today: remainingToday,
@@ -56,13 +54,8 @@ const TotalJobs = ({ bookings }) => {
         calculateTotalJobs();
     }, [bookings]);
 
-    // Helper function to check if two dates are on the same day
-    const isSameDay = (date1, date2) => {
-        return date1.getDate() === date2.getDate() && date1.getMonth() === date2.getMonth() && date1.getFullYear() === date2.getFullYear();
-    };
-
     // Helper function to check if a date is within a range (inclusive)
-    const isWithinRange = (date, start, end) => {
+    const isWithinInterval = (date, start, end) => {
         return date >= start && date <= end;
     };
 
