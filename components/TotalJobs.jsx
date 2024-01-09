@@ -22,8 +22,8 @@ const TotalJobs = ({ bookings }) => {
 
     useEffect(() => {
         console.log('TotalAmount - Bookings:', bookings);
-        const totals = calculateMonthlyTotals(bookings);
-        setMonthlyTotals(totals);
+        const total = calculateTotalJobs(bookings);
+        setTotalJobs(total);
     }, [bookings]);
 
     return (
