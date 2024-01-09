@@ -129,22 +129,22 @@ const BookingList = () => {
                                 onClick={() => handleClick(b._id)}
                                 style={{ cursor: 'pointer' }}
                                 // sx={{ color: b.completed ? 'success.main' : 'warning.main' }}
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 }, color: b.completed ? 'success.main' : 'warning.main' }}
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 }, color: b.completed ? 'success.main' : 'error.main' }}
                             >
                                 <TableCell component="th" scope="row">
-                                    <Typography color={b.completed ? 'success.main' : 'warning.main'}>{b.name}</Typography>
+                                    <Typography color={b.completed ? 'success.main' : 'error.main'}>{b.name}</Typography>
                                 </TableCell>
                                 <TableCell>
-                                    <Typography color={b.completed ? 'success.main' : 'warning.main'}>{capitalize(b.cleaningType)}</Typography>
+                                    <Typography color={b.completed ? 'success.main' : 'error.main'}>{capitalize(b.cleaningType)}</Typography>
                                 </TableCell>
                                 <TableCell>
-                                    <Typography color={b.completed ? 'success.main' : 'warning.main'}>{b.city}</Typography>
+                                    <Typography color={b.completed ? 'success.main' : 'error.main'}>{b.city}</Typography>
                                 </TableCell>
                                 <TableCell>
-                                    <Typography color={b.completed ? 'success.main' : 'warning.main'}>{b.date}</Typography>
+                                    <Typography color={b.completed ? 'success.main' : 'error.main'}>{b.date}</Typography>
                                 </TableCell>
                                 <TableCell>
-                                    <Typography color={b.completed ? 'success.main' : 'warning.main'}>C$ {b.totalAmount}</Typography>
+                                    <Typography color={b.completed ? 'success.main' : 'error.main'}>C$ {b.totalAmount}</Typography>
                                 </TableCell>
                                 <TableCell align="center">{b.paid ? <FaCircle color='green' /> : <FaCircle color='red' />}</TableCell>
                             </TableRow>
