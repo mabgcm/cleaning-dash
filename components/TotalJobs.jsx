@@ -54,28 +54,27 @@ const TotalJobs = ({ bookings }) => {
     return (
         <Card sx={{ height: 200 }} className="p-4 border border-slate-300">
             <div>
-                <strong>{totalJobsDone.today}</strong>
-                <p>jobs done today</p>
+
+                <p><strong>{totalJobsDone.today}</strong> jobs done today</p>
             </div>
             <div>
-                <strong>{totalJobsLeft.today}</strong>
-                <p>jobs left today</p>
+                <p><strong>{totalJobsLeft.today}</strong> jobs left today</p>
             </div>
             <div>
-                <strong>{totalJobsDone.week}</strong>
-                <p>jobs done this week</p>
+
+                <p><strong>{totalJobsDone.week}</strong> jobs done this week</p>
             </div>
             <div>
-                <strong>{totalJobsLeft.week}</strong>
-                <p>jobs left this week</p>
+
+                <p><strong>{totalJobsLeft.week}</strong> jobs left this week</p>
             </div>
             <div>
-                <strong>{totalJobsDone.month}</strong>
-                <p>jobs done this month</p>
+
+                <p><strong>{totalJobsDone.month}</strong> jobs done this month</p>
             </div>
             <div>
-                <strong>{totalJobsLeft.month}</strong>
-                <p>jobs left this month</p>
+
+                <p><strong>{totalJobsLeft.month}</strong> jobs left this month</p>
             </div>
         </Card>
     );
