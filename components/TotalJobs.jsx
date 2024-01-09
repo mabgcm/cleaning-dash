@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Card from '@mui/material/Card';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { startOfMonth, endOfMonth, isWithinInterval } from 'date-fns';
+import { parse, format } from 'date-fns';
 
 const TotalJobs = ({ bookings }) => {
     const [totalJobs, setTotalJobs] = useState(0);
@@ -20,21 +20,20 @@ const TotalJobs = ({ bookings }) => {
         let completedThisMonthCount = 0;
         let notCompletedThisMonthCount = 0;
 
-        const firstDayOfMonth = startOfMonth(new Date());
-        const lastDayOfMonth = endOfMonth(new Date());
-
         bookings.forEach((booking) => {
             if (booking) {
                 total += 1;
-                const bookingDate = new Date(booking.date); // Convert the date string to a Date object
+                const date = parse(booking.date, "EEEE, MMMM dd, yyyy 'at' hh:mm a", new Date());
+                const month = format(date, 'MMMyy');
+
                 if (booking.completed) {
                     completed += 1;
-                    if (isWithinInterval(bookingDate, { start: firstDayOfMonth, end: lastDayOfMonth })) {
+                    if (month === format(new Date(), 'MMMyy')) {
                         completedThisMonthCount += 1;
                     }
                 } else {
                     notCompleted += 1;
-                    if (isWithinInterval(bookingDate, { start: firstDayOfMonth, end: lastDayOfMonth })) {
+                    if (month === format(new Date(), 'MMMyy')) {
                         notCompletedThisMonthCount += 1;
                     }
                 }
@@ -51,7 +50,7 @@ const TotalJobs = ({ bookings }) => {
     };
 
     useEffect(() => {
-        console.log('TotalAmount - Bookings:', bookings);
+        console.log('TotalJobs - Bookings:', bookings);
         const {
             total,
             completed,
