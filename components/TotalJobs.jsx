@@ -122,7 +122,7 @@ const TotalJobs = ({ bookings }) => {
                         <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>{completedJobs}</Typography>
                         <Typography sx={{ fontSize: 12 }}>Completed</Typography>
                     </Box>
-                    <Box sx={{ color: 'yellow', alignItems: 'center', display: 'flex', flexDirection: 'column', mx: 2 }}>
+                    <Box sx={{ color: 'yellow', alignItems: 'center', display: 'flex', flexDirection: 'column', mx: 2, width: '100' }}>
                         <Typography sx={{ fontSize: 26, fontWeight: 'bold' }}>{totalJobs}</Typography>
                         <Typography sx={{ fontSize: 12 }}>Total Jobs</Typography>
                     </Box>
