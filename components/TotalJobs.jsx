@@ -91,7 +91,23 @@ const TotalJobs = ({ bookings }) => {
                         <Typography sx={{ fontSize: 12 }}>Queued</Typography>
                     </Box>
                 </Box>
-                <Box sx={{ color: '#fff', alignItems: 'center', display: 'flex', flexDirection: 'column', mt: 2 }}>
+
+                <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                    <Box sx={{ color: '#fff', alignItems: 'center', display: 'flex', flexDirection: 'column' }}>
+                        <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>{completedThisMonth}</Typography>
+                        <Typography sx={{ fontSize: 12 }}>Completed</Typography>
+                    </Box>
+                    <Box sx={{ color: '#fff', alignItems: 'center', display: 'flex', flexDirection: 'column', mx: 2 }}>
+                        <Typography sx={{ fontSize: 26, fontWeight: 'bold' }}>{totalThisMonth}</Typography>
+                        <Typography sx={{ fontSize: 12 }}>Total This Month</Typography>
+                    </Box>
+                    <Box sx={{ color: '#fff', alignItems: 'center', display: 'flex', flexDirection: 'column', }}>
+                        <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>{notCompletedThisMonth}</Typography>
+                        <Typography sx={{ fontSize: 12 }}>Queued</Typography>
+                    </Box>
+                </Box>
+
+                {/* <Box sx={{ color: '#fff', alignItems: 'center', display: 'flex', flexDirection: 'column', mt: 2 }}>
                     <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>{completedThisMonth}</Typography>
                     <Typography sx={{ fontSize: 12 }}>Completed This Month</Typography>
                 </Box>
@@ -102,7 +118,7 @@ const TotalJobs = ({ bookings }) => {
                 <Box sx={{ color: '#fff', alignItems: 'center', display: 'flex', flexDirection: 'column', mt: 2 }}>
                     <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>{totalThisMonth}</Typography>
                     <Typography sx={{ fontSize: 12 }}>Total This Month</Typography>
-                </Box>
+                </Box> */}
             </div>
         </Card>
     );
