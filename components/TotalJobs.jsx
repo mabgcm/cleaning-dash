@@ -51,17 +51,17 @@ const TotalJobs = ({ bookings }) => {
             </div>
             <div>
                 <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-                    <Box sx={{ color: '#fff', alignItems: 'center', display: 'flex', flexDirection: 'column', }}>
-                        <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>{totalJobs}</Typography>
+                    <Box sx={{ color: '#fff', alignItems: 'center', display: 'flex', flexDirection: 'column' }}>
+                        <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>{completedJobs}</Typography>
+                        <Typography sx={{ fontSize: 12 }}>Completed</Typography>
+                    </Box>
+                    <Box sx={{ color: '#fff', alignItems: 'center', display: 'flex', flexDirection: 'column', mx: 2 }}>
+                        <Typography sx={{ fontSize: 26, fontWeight: 'bold' }}>{totalJobs}</Typography>
                         <Typography sx={{ fontSize: 12 }}>Total Jobs</Typography>
                     </Box>
                     <Box sx={{ color: '#fff', alignItems: 'center', display: 'flex', flexDirection: 'column', }}>
-                        <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>{totalJobs}</Typography>
-                        <Typography sx={{ fontSize: 12 }}>Total Jobs</Typography>
-                    </Box>
-                    <Box sx={{ color: '#fff', alignItems: 'center', display: 'flex', flexDirection: 'column', }}>
-                        <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>{totalJobs}</Typography>
-                        <Typography sx={{ fontSize: 12 }}>Total Jobs</Typography>
+                        <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>{notCompletedJobs}</Typography>
+                        <Typography sx={{ fontSize: 12 }}>Queued</Typography>
                     </Box>
                 </Box>
 
