@@ -11,6 +11,7 @@ const TotalJobs = ({ bookings }) => {
     const [notCompletedJobs, setNotCompletedJobs] = useState(0);
     const [completedThisMonth, setCompletedThisMonth] = useState(0);
     const [notCompletedThisMonth, setNotCompletedThisMonth] = useState(0);
+    const [totalThisMonth, setTotalThisMonth] = useState(0);
 
     // Function to calculate total number of jobs and completed/not completed jobs
     const calculateTotalJobs = (bookings) => {
@@ -19,6 +20,7 @@ const TotalJobs = ({ bookings }) => {
         let notCompleted = 0;
         let completedThisMonthCount = 0;
         let notCompletedThisMonthCount = 0;
+        let totalThisMonthCount = 0;
 
         bookings.forEach((booking) => {
             if (booking) {
@@ -30,11 +32,13 @@ const TotalJobs = ({ bookings }) => {
                     completed += 1;
                     if (month === format(new Date(), 'MMMyy')) {
                         completedThisMonthCount += 1;
+                        totalThisMonthCount += 1;
                     }
                 } else {
                     notCompleted += 1;
                     if (month === format(new Date(), 'MMMyy')) {
                         notCompletedThisMonthCount += 1;
+                        totalThisMonthCount += 1;
                     }
                 }
             }
@@ -45,8 +49,9 @@ const TotalJobs = ({ bookings }) => {
         setNotCompletedJobs(notCompleted);
         setCompletedThisMonth(completedThisMonthCount);
         setNotCompletedThisMonth(notCompletedThisMonthCount);
+        setTotalThisMonth(totalThisMonthCount);
 
-        return { total, completed, notCompleted, completedThisMonthCount, notCompletedThisMonthCount };
+        return { total, completed, notCompleted, completedThisMonthCount, notCompletedThisMonthCount, totalThisMonthCount };
     };
 
     useEffect(() => {
@@ -57,17 +62,19 @@ const TotalJobs = ({ bookings }) => {
             notCompleted,
             completedThisMonthCount,
             notCompletedThisMonthCount,
+            totalThisMonthCount,
         } = calculateTotalJobs(bookings);
         setTotalJobs(total);
         setCompletedJobs(completed);
         setNotCompletedJobs(notCompleted);
         setCompletedThisMonth(completedThisMonthCount);
         setNotCompletedThisMonth(notCompletedThisMonthCount);
+        setTotalThisMonth(totalThisMonthCount);
     }, [bookings]);
 
     return (
         <Card
-            sx={{ height: 250, bgcolor: 'primary.main' }}
+            sx={{ height: 300, bgcolor: 'primary.main' }}
             className="p-4 border border-slate-300">
             <div>
                 <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
@@ -91,6 +98,10 @@ const TotalJobs = ({ bookings }) => {
                 <Box sx={{ color: '#fff', alignItems: 'center', display: 'flex', flexDirection: 'column', mt: 2 }}>
                     <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>{notCompletedThisMonth}</Typography>
                     <Typography sx={{ fontSize: 12 }}>Queued This Month</Typography>
+                </Box>
+                <Box sx={{ color: '#fff', alignItems: 'center', display: 'flex', flexDirection: 'column', mt: 2 }}>
+                    <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>{totalThisMonth}</Typography>
+                    <Typography sx={{ fontSize: 12 }}>Total This Month</Typography>
                 </Box>
             </div>
         </Card>
