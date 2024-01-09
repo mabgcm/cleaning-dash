@@ -5,25 +5,39 @@ import Box from '@mui/material/Box';
 
 const TotalJobs = ({ bookings }) => {
     const [totalJobs, setTotalJobs] = useState(0);
+    const [completedJobs, setCompletedJobs] = useState(0);
+    const [notCompletedJobs, setNotCompletedJobs] = useState(0);
 
-    // Function to calculate total number of jobs
+    // Function to calculate total number of jobs and completed/not completed jobs
     const calculateTotalJobs = (bookings) => {
         let total = 0;
+        let completed = 0;
+        let notCompleted = 0;
 
         bookings.forEach((booking) => {
             if (booking) {
                 total += 1;
+                if (booking.completed) {
+                    completed += 1;
+                } else {
+                    notCompleted += 1;
+                }
             }
         });
 
         setTotalJobs(total);
-        return total;
+        setCompletedJobs(completed);
+        setNotCompletedJobs(notCompleted);
+
+        return { total, completed, notCompleted };
     };
 
     useEffect(() => {
         console.log('TotalAmount - Bookings:', bookings);
-        const total = calculateTotalJobs(bookings);
+        const { total, completed, notCompleted } = calculateTotalJobs(bookings);
         setTotalJobs(total);
+        setCompletedJobs(completed);
+        setNotCompletedJobs(notCompleted);
     }, [bookings]);
 
     return (
@@ -37,6 +51,10 @@ const TotalJobs = ({ bookings }) => {
                 <Box sx={{ color: '#fff', fontSize: 26, fontWeight: 'bold', align: 'center' }}>
                     <p>{totalJobs}</p>
                     <p sx={{ fontSize: 8 }}>Total Jobs</p>
+                    <p>{completedJobs}</p>
+                    <p sx={{ fontSize: 8 }}>Completed Jobs</p>
+                    <p>{notCompletedJobs}</p>
+                    <p sx={{ fontSize: 8 }}>Not Completed Jobs</p>
                 </Box>
             </div>
         </Card>
