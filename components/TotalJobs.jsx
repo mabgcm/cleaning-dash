@@ -11,7 +11,7 @@ const TotalJobs = ({ bookings }) => {
         let total = 0;
 
         bookings.forEach((booking) => {
-            if (booking.paid) {
+            if (booking) {
                 total += 1;
             }
         });
@@ -21,8 +21,9 @@ const TotalJobs = ({ bookings }) => {
     };
 
     useEffect(() => {
-        const total = calculateTotalJobs(bookings);
-        setTotalJobs(total);
+        console.log('TotalAmount - Bookings:', bookings);
+        const totals = calculateMonthlyTotals(bookings);
+        setMonthlyTotals(totals);
     }, [bookings]);
 
     return (
