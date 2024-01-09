@@ -116,9 +116,9 @@ const TotalJobs = ({ bookings }) => {
         <Card
             sx={{ height: 300, bgcolor: 'primary.main' }}
             className="p-4 border border-slate-300">
-            <div>
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                    <Box sx={{ color: '#fff', alignItems: 'center', display: 'flex', flexDirection: 'column' }}>
+                    <Box sx={{ color: 'grey.400', alignItems: 'center', display: 'flex', flexDirection: 'column' }}>
                         <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>{completedJobs}</Typography>
                         <Typography sx={{ fontSize: 12 }}>Completed</Typography>
                     </Box>
@@ -161,9 +161,7 @@ const TotalJobs = ({ bookings }) => {
                         <Typography sx={{ fontSize: 12 }}>Queued</Typography>
                     </Box>
                 </Box>
-
-
-            </div>
+            </Box>
         </Card>
     );
 };
