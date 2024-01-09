@@ -50,10 +50,19 @@ const TotalJobs = ({ bookings }) => {
                 {/* <h4>Total Jobs:</h4> */}
             </div>
             <div>
-                <Box sx={{ color: '#fff', alignItems: 'center', display: 'flex', flexDirection: 'column', }}>
-                    <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>{totalJobs}</Typography>
-                    <Typography sx={{ fontSize: 12 }}>Total Jobs</Typography>
-
+                <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+                    <Box sx={{ color: '#fff', alignItems: 'center', display: 'flex', flexDirection: 'column', }}>
+                        <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>{totalJobs}</Typography>
+                        <Typography sx={{ fontSize: 12 }}>Total Jobs</Typography>
+                    </Box>
+                    <Box sx={{ color: '#fff', alignItems: 'center', display: 'flex', flexDirection: 'column', }}>
+                        <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>{totalJobs}</Typography>
+                        <Typography sx={{ fontSize: 12 }}>Total Jobs</Typography>
+                    </Box>
+                    <Box sx={{ color: '#fff', alignItems: 'center', display: 'flex', flexDirection: 'column', }}>
+                        <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>{totalJobs}</Typography>
+                        <Typography sx={{ fontSize: 12 }}>Total Jobs</Typography>
+                    </Box>
                 </Box>
 
                 <Box>
