@@ -1,7 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import Card from '@mui/material/Card';
-import { startOfWeek, endOfWeek, startOfMonth, endOfMonth, isWithinInterval, isSameDay } from 'date-fns';
 
 const TotalJobs = ({ bookings }) => {
     const [totalJobsDone, setTotalJobsDone] = useState({ today: 0, week: 0, month: 0 });
@@ -10,28 +9,31 @@ const TotalJobs = ({ bookings }) => {
     useEffect(() => {
         const calculateTotalJobs = () => {
             const currentDate = new Date();
+            const startOfWeek = new Date(currentDate);
+            const endOfWeek = new Date(currentDate);
+            const startOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+            const endOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
 
-            // Filter bookings for today
+            startOfWeek.setDate(currentDate.getDate() - currentDate.getDay() + (currentDate.getDay() === 0 ? -6 : 1));
+            endOfWeek.setDate(currentDate.getDate() - currentDate.getDay() + 7);
+
             const todayBookings = bookings.filter((booking) => {
                 const bookingDate = new Date(booking.date);
                 return booking.completed && isSameDay(bookingDate, currentDate);
             });
+            console.log('Today B', todayBookings)
 
-            // Filter bookings for this week
-            const startOfWeekDate = getStartOfWeek(currentDate);
-            const endOfWeekDate = getEndOfWeek(currentDate);
             const weekBookings = bookings.filter((booking) => {
                 const bookingDate = new Date(booking.date);
-                return booking.completed && isWithinInterval(bookingDate, { start: startOfWeekDate, end: endOfWeekDate });
+                return booking.completed && bookingDate >= startOfWeek && bookingDate <= endOfWeek;
             });
+            console.log('Week B', weekBookings)
 
-            // Filter bookings for this month
-            const startOfMonthDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
-            const endOfMonthDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
             const monthBookings = bookings.filter((booking) => {
                 const bookingDate = new Date(booking.date);
-                return booking.completed && isWithinInterval(bookingDate, { start: startOfMonthDate, end: endOfMonthDate });
+                return booking.completed && bookingDate >= startOfMonth && bookingDate <= endOfMonth;
             });
+            console.log('Month B', monthBookings)
 
             setTotalJobsDone({
                 today: todayBookings.length,
@@ -39,10 +41,9 @@ const TotalJobs = ({ bookings }) => {
                 month: monthBookings.length,
             });
 
-            // Calculate total jobs left for today, this week, and this month
             const remainingToday = bookings.filter((booking) => !booking.completed && isSameDay(new Date(booking.date), currentDate)).length;
-            const remainingWeek = bookings.filter((booking) => !booking.completed && isWithinInterval(new Date(booking.date), { start: startOfWeekDate, end: endOfWeekDate })).length;
-            const remainingMonth = bookings.filter((booking) => !booking.completed && isWithinInterval(new Date(booking.date), { start: startOfMonthDate, end: endOfMonthDate })).length;
+            const remainingWeek = bookings.filter((booking) => !booking.completed && isWithinRange(new Date(booking.date), startOfWeek, endOfWeek)).length;
+            const remainingMonth = bookings.filter((booking) => !booking.completed && isWithinRange(new Date(booking.date), startOfMonth, endOfMonth)).length;
 
             setTotalJobsLeft({
                 today: remainingToday,
@@ -54,23 +55,12 @@ const TotalJobs = ({ bookings }) => {
         calculateTotalJobs();
     }, [bookings]);
 
-    // Helper function to check if a date is within a range (inclusive)
-    const isWithinInterval = (date, start, end) => {
+    const isSameDay = (date1, date2) => {
+        return date1.getDate() === date2.getDate() && date1.getMonth() === date2.getMonth() && date1.getFullYear() === date2.getFullYear();
+    };
+
+    const isWithinRange = (date, start, end) => {
         return date >= start && date <= end;
-    };
-
-    // Helper function to get the start of the week (Monday)
-    const getStartOfWeek = (date) => {
-        const dayOfWeek = date.getDay();
-        const diff = date.getDate() - dayOfWeek + (dayOfWeek === 0 ? -6 : 1); // Adjust when day is Sunday
-        return new Date(date.setDate(diff));
-    };
-
-    // Helper function to get the end of the week (Sunday)
-    const getEndOfWeek = (date) => {
-        const dayOfWeek = date.getDay();
-        const diff = date.getDate() + (dayOfWeek === 0 ? 0 : 7 - dayOfWeek); // Adjust when day is not Sunday
-        return new Date(date.setDate(diff));
     };
 
     return (
