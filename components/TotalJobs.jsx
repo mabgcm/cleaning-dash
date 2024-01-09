@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import Card from '@mui/material/Card';
 import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+
 
 const TotalJobs = ({ bookings }) => {
     const [totalJobs, setTotalJobs] = useState(0);
