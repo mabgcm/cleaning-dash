@@ -117,12 +117,12 @@ const TotalJobs = ({ bookings }) => {
             sx={{ bgcolor: 'primary.main' }}
             className="p-4 border border-slate-300">
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly' }}>
                     <Box sx={{ color: 'yellow', alignItems: 'center', display: 'flex', flexDirection: 'column' }}>
                         <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>{completedJobs}</Typography>
                         <Typography sx={{ fontSize: 12 }}>Completed</Typography>
                     </Box>
-                    <Box sx={{ color: 'yellow', alignItems: 'center', display: 'flex', flexDirection: 'column', mx: 2, width: '150' }}>
+                    <Box sx={{ color: 'yellow', alignItems: 'center', display: 'flex', flexDirection: 'column', mx: 2 }}>
                         <Typography sx={{ fontSize: 26, fontWeight: 'bold' }}>{totalJobs}</Typography>
                         <Typography sx={{ fontSize: 12 }}>Total Jobs</Typography>
                     </Box>
@@ -132,7 +132,7 @@ const TotalJobs = ({ bookings }) => {
                     </Box>
                 </Box>
 
-                <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly' }}>
                     <Box sx={{ color: '#fff', alignItems: 'center', display: 'flex', flexDirection: 'column' }}>
                         <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>{completedThisMonth}</Typography>
                         <Typography sx={{ fontSize: 12 }}>Completed</Typography>
@@ -147,7 +147,7 @@ const TotalJobs = ({ bookings }) => {
                     </Box>
                 </Box>
 
-                <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly' }}>
                     <Box sx={{ color: '#fff', alignItems: 'center', display: 'flex', flexDirection: 'column' }}>
                         <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>{completedThisWeek}</Typography>
                         <Typography sx={{ fontSize: 12 }}>Completed</Typography>
