@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Card from '@mui/material/Card';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { parse, format } from 'date-fns';
+import { parse, format, startOfWeek, endOfWeek, isWithinInterval } from 'date-fns';
 
 const TotalJobs = ({ bookings }) => {
     const [totalJobs, setTotalJobs] = useState(0);
@@ -12,6 +12,9 @@ const TotalJobs = ({ bookings }) => {
     const [completedThisMonth, setCompletedThisMonth] = useState(0);
     const [notCompletedThisMonth, setNotCompletedThisMonth] = useState(0);
     const [totalThisMonth, setTotalThisMonth] = useState(0);
+    const [completedThisWeek, setCompletedThisWeek] = useState(0);
+    const [notCompletedThisWeek, setNotCompletedThisWeek] = useState(0);
+    const [totalThisWeek, setTotalThisWeek] = useState(0);
 
     // Function to calculate total number of jobs and completed/not completed jobs
     const calculateTotalJobs = (bookings) => {
@@ -21,6 +24,15 @@ const TotalJobs = ({ bookings }) => {
         let completedThisMonthCount = 0;
         let notCompletedThisMonthCount = 0;
         let totalThisMonthCount = 0;
+        let completedThisWeekCount = 0;
+        let notCompletedThisWeekCount = 0;
+        let totalThisWeekCount = 0;
+
+        const firstDayOfMonth = startOfWeek(new Date(), { weekStartsOn: 1 });
+        const lastDayOfMonth = endOfWeek(new Date(), { weekStartsOn: 1 });
+
+        const firstDayOfWeek = startOfWeek(new Date());
+        const lastDayOfWeek = endOfWeek(new Date());
 
         bookings.forEach((booking) => {
             if (booking) {
@@ -34,11 +46,19 @@ const TotalJobs = ({ bookings }) => {
                         completedThisMonthCount += 1;
                         totalThisMonthCount += 1;
                     }
+                    if (isWithinInterval(date, { start: firstDayOfWeek, end: lastDayOfWeek })) {
+                        completedThisWeekCount += 1;
+                        totalThisWeekCount += 1;
+                    }
                 } else {
                     notCompleted += 1;
                     if (month === format(new Date(), 'MMMyy')) {
                         notCompletedThisMonthCount += 1;
                         totalThisMonthCount += 1;
+                    }
+                    if (isWithinInterval(date, { start: firstDayOfWeek, end: lastDayOfWeek })) {
+                        notCompletedThisWeekCount += 1;
+                        totalThisWeekCount += 1;
                     }
                 }
             }
@@ -50,8 +70,21 @@ const TotalJobs = ({ bookings }) => {
         setCompletedThisMonth(completedThisMonthCount);
         setNotCompletedThisMonth(notCompletedThisMonthCount);
         setTotalThisMonth(totalThisMonthCount);
+        setCompletedThisWeek(completedThisWeekCount);
+        setNotCompletedThisWeek(notCompletedThisWeekCount);
+        setTotalThisWeek(totalThisWeekCount);
 
-        return { total, completed, notCompleted, completedThisMonthCount, notCompletedThisMonthCount, totalThisMonthCount };
+        return {
+            total,
+            completed,
+            notCompleted,
+            completedThisMonthCount,
+            notCompletedThisMonthCount,
+            totalThisMonthCount,
+            completedThisWeekCount,
+            notCompletedThisWeekCount,
+            totalThisWeekCount,
+        };
     };
 
     useEffect(() => {
@@ -63,13 +96,20 @@ const TotalJobs = ({ bookings }) => {
             completedThisMonthCount,
             notCompletedThisMonthCount,
             totalThisMonthCount,
+            completedThisWeekCount,
+            notCompletedThisWeekCount,
+            totalThisWeekCount,
         } = calculateTotalJobs(bookings);
+
         setTotalJobs(total);
         setCompletedJobs(completed);
         setNotCompletedJobs(notCompleted);
         setCompletedThisMonth(completedThisMonthCount);
         setNotCompletedThisMonth(notCompletedThisMonthCount);
         setTotalThisMonth(totalThisMonthCount);
+        setCompletedThisWeek(completedThisWeekCount);
+        setNotCompletedThisWeek(notCompletedThisWeekCount);
+        setTotalThisWeek(totalThisWeekCount);
     }, [bookings]);
 
     return (
@@ -107,18 +147,22 @@ const TotalJobs = ({ bookings }) => {
                     </Box>
                 </Box>
 
-                {/* <Box sx={{ color: '#fff', alignItems: 'center', display: 'flex', flexDirection: 'column', mt: 2 }}>
-                    <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>{completedThisMonth}</Typography>
-                    <Typography sx={{ fontSize: 12 }}>Completed This Month</Typography>
+                <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                    <Box sx={{ color: '#fff', alignItems: 'center', display: 'flex', flexDirection: 'column' }}>
+                        <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>{completedThisWeek}</Typography>
+                        <Typography sx={{ fontSize: 12 }}>Completed</Typography>
+                    </Box>
+                    <Box sx={{ color: '#fff', alignItems: 'center', display: 'flex', flexDirection: 'column', mx: 2 }}>
+                        <Typography sx={{ fontSize: 26, fontWeight: 'bold' }}>{totalThisWeek}</Typography>
+                        <Typography sx={{ fontSize: 12 }}>Total This Week</Typography>
+                    </Box>
+                    <Box sx={{ color: '#fff', alignItems: 'center', display: 'flex', flexDirection: 'column', }}>
+                        <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>{notCompletedThisWeek}</Typography>
+                        <Typography sx={{ fontSize: 12 }}>Queued</Typography>
+                    </Box>
                 </Box>
-                <Box sx={{ color: '#fff', alignItems: 'center', display: 'flex', flexDirection: 'column', mt: 2 }}>
-                    <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>{notCompletedThisMonth}</Typography>
-                    <Typography sx={{ fontSize: 12 }}>Queued This Month</Typography>
-                </Box>
-                <Box sx={{ color: '#fff', alignItems: 'center', display: 'flex', flexDirection: 'column', mt: 2 }}>
-                    <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>{totalThisMonth}</Typography>
-                    <Typography sx={{ fontSize: 12 }}>Total This Month</Typography>
-                </Box> */}
+
+
             </div>
         </Card>
     );
