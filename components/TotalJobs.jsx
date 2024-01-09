@@ -24,6 +24,7 @@ const TotalJobs = ({ bookings }) => {
                 const bookingDate = new Date(booking.date);
                 return booking.completed && isWithinRange(bookingDate, startOfWeek, endOfWeek);
             });
+            console.log('This week Bookings:', weekBookings);
 
             // Filter bookings for this month
             const startOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
@@ -32,6 +33,7 @@ const TotalJobs = ({ bookings }) => {
                 const bookingDate = new Date(booking.date);
                 return booking.completed && isWithinRange(bookingDate, startOfMonth, endOfMonth);
             });
+            console.log('This ,omth Bookings:', monthBookings);
 
             setTotalJobsDone({
                 today: todayBookings.length,
