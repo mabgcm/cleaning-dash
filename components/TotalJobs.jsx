@@ -28,12 +28,12 @@ const TotalJobs = ({ bookings }) => {
                 total += 1;
                 if (booking.completed) {
                     completed += 1;
-                    if (isWithinInterval(new Date(booking.createdAt), { start: firstDayOfMonth, end: lastDayOfMonth })) {
+                    if (isWithinInterval(new Date(booking.date), { start: firstDayOfMonth, end: lastDayOfMonth })) {
                         completedThisMonthCount += 1;
                     }
                 } else {
                     notCompleted += 1;
-                    if (isWithinInterval(new Date(booking.createdAt), { start: firstDayOfMonth, end: lastDayOfMonth })) {
+                    if (isWithinInterval(new Date(booking.date), { start: firstDayOfMonth, end: lastDayOfMonth })) {
                         notCompletedThisMonthCount += 1;
                     }
                 }
