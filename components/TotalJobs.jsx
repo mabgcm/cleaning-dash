@@ -118,7 +118,7 @@ const TotalJobs = ({ bookings }) => {
             className="p-4 border border-slate-300">
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                    <Box sx={{ color: 'grey.900', alignItems: 'center', display: 'flex', flexDirection: 'column' }}>
+                    <Box sx={{ color: 'yellow.200', alignItems: 'center', display: 'flex', flexDirection: 'column' }}>
                         <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>{completedJobs}</Typography>
                         <Typography sx={{ fontSize: 12 }}>Completed</Typography>
                     </Box>
