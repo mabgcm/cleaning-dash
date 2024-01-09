@@ -34,8 +34,9 @@ const TotalJobs = ({ bookings }) => {
                 {/* <h4>Total Jobs:</h4> */}
             </div>
             <div>
-                <Box sx={{ color: '#fff', fontSize: 26, fontWeight: 'bold' }}>
+                <Box sx={{ color: '#fff', fontSize: 26, fontWeight: 'bold', align: 'center' }}>
                     <p>{totalJobs}</p>
+                    <p sx={{ fontSize: 8 }}>Total Jobs</p>
                 </Box>
             </div>
         </Card>
