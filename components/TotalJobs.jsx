@@ -26,14 +26,15 @@ const TotalJobs = ({ bookings }) => {
         bookings.forEach((booking) => {
             if (booking) {
                 total += 1;
+                const bookingDate = new Date(booking.date); // Convert the date string to a Date object
                 if (booking.completed) {
                     completed += 1;
-                    if (isWithinInterval(new Date(booking.date), { start: firstDayOfMonth, end: lastDayOfMonth })) {
+                    if (isWithinInterval(bookingDate, { start: firstDayOfMonth, end: lastDayOfMonth })) {
                         completedThisMonthCount += 1;
                     }
                 } else {
                     notCompleted += 1;
-                    if (isWithinInterval(new Date(booking.date), { start: firstDayOfMonth, end: lastDayOfMonth })) {
+                    if (isWithinInterval(bookingDate, { start: firstDayOfMonth, end: lastDayOfMonth })) {
                         notCompletedThisMonthCount += 1;
                     }
                 }
